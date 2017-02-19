@@ -77,14 +77,14 @@ module Storyblok
     end
 
     def get(request)
-      endpoint = base_url + request.endpoint
+      endpoint = base_url + request.url
       query = request_query(request.query)
       query_string = build_nested_query(query)
 
       if Cache.client.nil?
         result = run_request(endpoint, query_string)
       else
-        cache_key = 'storyblok:' + configuration[:token] + ':' + request.endpoint + ':' + Base64.encode64(query_string)
+        cache_key = 'storyblok:' + configuration[:token] + ':' + request.url + ':' + Base64.encode64(query_string)
         cache_time = 60 * 60 * 2
 
         result = Cache.client.cache(cache_key, cache_time) do
