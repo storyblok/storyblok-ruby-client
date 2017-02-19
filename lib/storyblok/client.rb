@@ -3,6 +3,7 @@ require_relative 'links'
 
 require 'rest-client'
 require 'logger'
+require 'base64'
 
 module Storyblok
   class Client
@@ -88,7 +89,7 @@ module Storyblok
         cache_time = 60 * 60 * 2
 
         result = Cache.client.cache(cache_key, cache_time) do
-          run_request(endpoint, query)
+          run_request(endpoint, query_string)
         end
       end
 
