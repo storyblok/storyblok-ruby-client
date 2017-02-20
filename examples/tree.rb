@@ -1,3 +1,5 @@
+# bundle exec ruby examples/tree.rb
+
 require 'storyblok'
 
 logger = Logger.new(STDOUT)
@@ -9,8 +11,7 @@ client = Storyblok::Client.new(
   logger: logger
 )
 
-links = client.links
-tree = links.as_tree
+tree = client.tree
 
 puts '<ul>'
 tree.each do |key, item|

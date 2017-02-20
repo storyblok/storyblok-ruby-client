@@ -1,3 +1,5 @@
+# bundle exec ruby examples/cache.rb
+
 require 'storyblok'
 require 'redis'
 

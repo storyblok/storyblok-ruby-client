@@ -74,7 +74,16 @@ module Storyblok
     #
     # @return [Hash]
     def links(query = {})
-      Links.new(Request.new(self, '/cdn/links', query).get)
+      Request.new(self, '/cdn/links', query).get
+    end
+
+    # Gets a link tree
+    #
+    # @param [Hash] query
+    #
+    # @return [Hash]
+    def tree(query = {})
+      Links.new(Request.new(self, '/cdn/links', query).get).as_tree
     end
 
     def get(request)

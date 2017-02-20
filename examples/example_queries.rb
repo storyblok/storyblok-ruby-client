@@ -1,3 +1,5 @@
+# bundle exec ruby examples/example_queries.rb
+
 require 'storyblok'
 
 logger = Logger.new(STDOUT)

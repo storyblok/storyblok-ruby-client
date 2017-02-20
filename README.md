@@ -53,8 +53,7 @@ client.tags({
 ## Generate a navigation tree
 
 ```ruby
-links = client.links
-tree = links.as_tree
+tree = client.tree
 
 puts '<ul>'
 tree.each do |key, item|
