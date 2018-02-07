@@ -16,3 +16,7 @@ client = Storyblok::Client.new(
 )
 
 links = client.links
+links = client.links
+links = client.flush
+links = client.links
+

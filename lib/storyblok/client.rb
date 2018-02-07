@@ -4,6 +4,7 @@ require_relative 'links'
 require 'rest-client'
 require 'logger'
 require 'base64'
+require 'json'
 
 module Storyblok
   class Client
@@ -94,15 +95,22 @@ module Storyblok
       if Cache.client.nil?
         result = run_request(endpoint, query_string)
       else
-        cache_key = 'storyblok:' + configuration[:token] + ':' + request.url + ':' + Base64.encode64(query_string)
+        version = Cache.client.get('storyblok:' + configuration[:token] + ':version') || '0'
+        cache_key = 'storyblok:' + configuration[:token] + ':v:' + version + ':' + request.url + ':' + Base64.encode64(query_string)
         cache_time = 60 * 60 * 2
 
-        result = Cache.client.cache(cache_key, cache_time) do
+        result = Cache.cache(cache_key, cache_time) do
           run_request(endpoint, query_string)
         end
       end
 
       JSON.parse(result)
+    end
+
+    def flush
+      if !Cache.client.nil?
+        Cache.client.set('storyblok:' + configuration[:token] + ':version', Time.now.to_i.to_s)
+      end
     end
 
     private

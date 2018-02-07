@@ -8,7 +8,7 @@ module Storyblok
       @client
     end
 
-    def cache(key, expire = nil)
+    def self.cache(key, expire = nil)
       if expire == 0
         return yield(self)
       end
