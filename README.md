@@ -12,7 +12,7 @@ gem 'storyblok'
 ### Load a Story
 
 ```ruby
-client = new Storyblok::Client(token: 'YOUR_TOKEN')
+client = Storyblok::Client.new(token: 'YOUR_TOKEN')
 
 # Optionally set a cache client
 Storyblok::Cache.client = Redis.new(:url => 'redis://localhost:6379')
