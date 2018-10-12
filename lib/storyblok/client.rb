@@ -15,7 +15,8 @@ module Storyblok
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',
-      cache_version: Time.now.to_i
+      cache_version: Time.now.to_i,
+      cache: nil,
     }
 
     attr_reader :configuration, :logger
@@ -92,14 +93,13 @@ module Storyblok
       query = request_query(request.query)
       query_string = build_nested_query(query)
 
-      if Cache.client.nil?
+      if cache.nil?
         result = run_request(endpoint, query_string)
       else
-        version = Cache.client.get('storyblok:' + configuration[:token] + ':version') || '0'
+        version = cache.get('storyblok:' + configuration[:token] + ':version') || '0'
         cache_key = 'storyblok:' + configuration[:token] + ':v:' + version + ':' + request.url + ':' + Base64.encode64(query_string)
-        cache_time = 60 * 60 * 2
 
-        result = Cache.cache(cache_key, cache_time) do
+        result = cache.cache(cache_key) do
           run_request(endpoint, query_string)
         end
       end
@@ -108,8 +108,8 @@ module Storyblok
     end
 
     def flush
-      if !Cache.client.nil?
-        Cache.client.set('storyblok:' + configuration[:token] + ':version', Time.now.to_i.to_s)
+      unless cache.nil?
+        cache.set('storyblok:' + configuration[:token] + ':version', Time.now.to_i.to_s)
       end
     end
 
@@ -137,6 +137,10 @@ module Storyblok
 
     def default_configuration
       DEFAULT_CONFIGURATION.dup
+    end
+
+    def cache
+      configuration[:cache]
     end
 
     def setup_logger
