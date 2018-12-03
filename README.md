@@ -9,6 +9,16 @@ gem 'storyblok'
 
 ## Usage
 
+By default the client loads the "draft" version of the Story. Be sure to set the version to "published" to get the published content only.
+
+```ruby
+# The draft mode is required for the preview
+Storyblok::Client.new(version: 'draft')
+
+# Requests only published stories
+Storyblok::Client.new(version: 'published')
+```
+
 ### Load a Story
 
 ```ruby
