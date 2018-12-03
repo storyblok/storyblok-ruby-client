@@ -75,6 +75,21 @@ end
 puts '</ul>'
 ```
 
+## How to flush the cache
+
+Following an example of how to flush the client cache:
+
+```ruby
+cache = Storyblok::Cache::Redis.new(redis: Redis.current)
+client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
+
+# Get a story and cache it
+client.story('home')
+
+# Flush the cache
+client.flush
+```
+
 ### License
 
 This project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
