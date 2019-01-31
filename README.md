@@ -9,6 +9,16 @@ gem 'storyblok'
 
 ## Usage for the content delivery api
 
+By default the client loads the "draft" version of the Story. Be sure to set the version to "published" to get the published content only.
+
+```ruby
+# The draft mode is required for the preview
+Storyblok::Client.new(version: 'draft')
+
+# Requests only published stories
+Storyblok::Client.new(version: 'published')
+```
+
 ### Load a Story
 
 ```ruby
@@ -16,7 +26,8 @@ gem 'storyblok'
 client = Storyblok::Client.new(token: 'YOUR_TOKEN')
 
 # Optionally set a cache client
-cache = Storyblik::Cache::Redis.new(url: 'redis://localhost:6379')
+redis = Redis.new(url: 'redis://localhost:6379')
+cache = Storyblok::Cache::Redis.new(redis: Redis.current)
 client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
 
 # Get a story
@@ -72,6 +83,21 @@ tree.each do |key, item|
   puts '</li>'
 end
 puts '</ul>'
+```
+
+## How to flush the cache
+
+Following an example of how to flush the client cache:
+
+```ruby
+cache = Storyblok::Cache::Redis.new(redis: Redis.current)
+client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
+
+# Get a story and cache it
+client.story('home')
+
+# Flush the cache
+client.flush
 ```
 
 ## Usage for the management api
