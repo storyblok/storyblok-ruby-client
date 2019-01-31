@@ -1,5 +1,5 @@
 # About
-This is the Storyblok ruby client for easy access of the management and content delivery api.
+This is the Storyblok ruby client to easily access the management and content delivery api.
 
 ## Install
 
