@@ -1,5 +1,5 @@
 # About
-This is the Storyblok ruby client for easy access of the content delivery api.
+This is the Storyblok ruby client for easy access of the management and content delivery api.
 
 ## Install
 
@@ -7,7 +7,7 @@ This is the Storyblok ruby client for easy access of the content delivery api.
 gem 'storyblok'
 ```
 
-## Usage
+## Usage for the content delivery api
 
 ### Load a Story
 
@@ -73,6 +73,36 @@ tree.each do |key, item|
 end
 puts '</ul>'
 ```
+
+## Usage for the management api
+
+### Initialize the client and load spaces
+
+```ruby
+client = Storyblok::Client.new(oauth_token: 'YOUR_OAUTH_TOKEN')
+
+# Get your spaces
+client.get('spaces')
+```
+
+### Create a story
+
+```ruby
+client.post("spaces/{space_id}/stories", {story: {name: 'new', slug: "new"}})
+```
+
+### Update a story
+
+```ruby
+client.put("spaces/{space_id}/stories/{story_id}", {story: {name: 'new', slug: "new"}})
+```
+
+### Delete a story
+
+```ruby
+client.delete("spaces/{space_id}/stories/{story_id}")
+```
+
 
 ### License
 
