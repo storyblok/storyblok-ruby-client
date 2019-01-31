@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name          = 'storyblok'
   gem.version       = Storyblok::VERSION
   gem.summary       = 'storyblok'
-  gem.description   = 'Ruby client for the https://www.storyblok.com Content Delivery API'
+  gem.description   = 'Ruby client for the https://www.storyblok.com management and content delivery API'
   gem.license       = 'MIT'
   gem.authors       = ['Storyblok (Alexander Feiglstorfer)']
   gem.email         = 'it@storyblok.com'

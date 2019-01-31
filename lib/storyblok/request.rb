@@ -26,7 +26,7 @@ module Storyblok
 
     # Delegates the actual HTTP work to the client
     def get
-      client.get(self)
+      client.cached_get(self)
     end
 
     # Returns a new Request object with the same data
