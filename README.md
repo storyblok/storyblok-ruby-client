@@ -19,7 +19,7 @@ Storyblok::Client.new(version: 'draft')
 Storyblok::Client.new(version: 'published')
 ```
 
-### Load a Story
+### Load a story
 
 ```ruby
 # Without cache
@@ -34,7 +34,7 @@ client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
 client.story('home')
 ```
 
-### Load a list of Stories
+### Load a list of stories
 
 ```ruby
 # Get all Stories that start with news
@@ -63,6 +63,12 @@ client.tags({
 
 ```
 
+### Load a list of links
+
+```ruby
+client.links
+```
+
 ## Generate a navigation tree
 
 ```ruby
@@ -83,6 +89,12 @@ tree.each do |key, item|
   puts '</li>'
 end
 puts '</ul>'
+```
+
+### Get the space info
+
+```ruby
+client.space
 ```
 
 ## How to flush the cache

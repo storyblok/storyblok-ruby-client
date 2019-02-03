@@ -41,6 +41,15 @@ module Storyblok
       setup_logger
     end
 
+    # Gets the space info
+    #
+    # @param [Hash] query
+    #
+    # @return [Hash]
+    def space(query = {})
+      Request.new(self, '/cdn/spaces/me', query).get
+    end
+
     # Gets a collection of stories
     #
     # @param [Hash] query
