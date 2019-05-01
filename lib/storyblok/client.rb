@@ -78,6 +78,15 @@ module Storyblok
       Request.new(self, '/cdn/datasource_entries', query).get
     end
 
+    # Gets a collection of datasources
+    #
+    # @param [Hash] query
+    #
+    # @return [Hash]
+    def datasources(query = {})
+      Request.new(self, '/cdn/datasources', query).get
+    end
+
     # Gets a collection of tags
     #
     # @param [Hash] query

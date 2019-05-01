@@ -15,3 +15,4 @@ p client.stories(starts_with: 'en/news')
 p client.story('demo1')
 p client.datasource_entries(datasource: 'labels', per_page: 10)
 p client.links
+p client.datasources
