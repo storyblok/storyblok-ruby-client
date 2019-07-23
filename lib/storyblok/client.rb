@@ -41,6 +41,16 @@ module Storyblok
       setup_logger
     end
 
+    # Dynamic cdn endpoint call
+    #
+    # @param [String] id
+    # @param [Hash] query
+    #
+    # @return [Hash]
+    def get_from_cdn(slug, query = {}, id = nil)
+      Request.new(self, "/cdn/#{slug}", query, id).get
+    end
+
     # Gets the space info
     #
     # @param [Hash] query
@@ -208,7 +218,7 @@ module Storyblok
 
     # Patches a query hash with the client configurations for queries
     def request_query(query)
-      query[:token] = configuration[:token]
+      query[:token] = configuration[:token] if query[:token].nil?
       query[:version] = configuration[:version] if query[:version].nil?
       query[:cv] = configuration[:cache_version] if query[:cache_version].nil?
       query
