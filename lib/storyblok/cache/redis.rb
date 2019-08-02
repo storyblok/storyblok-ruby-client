@@ -6,7 +6,7 @@ module Storyblok
       }
 
       def initialize(*args)
-        options = args.extract_options!
+        options = args.last.is_a?(::Hash) ? args.pop : {}
 
         @redis = options.delete(:redis) || begin
           if defined?(::Redis)

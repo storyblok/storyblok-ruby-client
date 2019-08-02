@@ -27,7 +27,7 @@ client = Storyblok::Client.new(token: 'YOUR_TOKEN')
 
 # Optionally set a cache client
 redis = Redis.new(url: 'redis://localhost:6379')
-cache = Storyblok::Cache::Redis.new(redis: Redis.current)
+cache = Storyblok::Cache::Redis.new(redis: redis)
 client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
 
 # Get a story
