@@ -1,5 +1,6 @@
 require_relative 'request'
 require_relative 'links'
+require_relative 'renderer/html_renderer'
 
 require 'rest-client'
 require 'logger'
@@ -15,8 +16,9 @@ module Storyblok
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',
+      component_resolver: ->(component, data) { '' },
       cache_version: Time.now.to_i,
-      cache: nil,
+      cache: nil
     }
 
     attr_reader :configuration, :logger
@@ -25,6 +27,7 @@ module Storyblok
     # @option given_configuration [String] :token Required if oauth_token is not set
     # @option given_configuration [String] :oauth_token Required if token is not set
     # @option given_configuration [String] :api_url
+    # @option given_configuration [Proc] :component_resolver
     # @option given_configuration [Number] :api_version
     # @option given_configuration [false, ::Logger] :logger
     # @option given_configuration [::Logger::DEBUG, ::Logger::INFO, ::Logger::WARN, ::Logger::ERROR] :log_level
@@ -38,6 +41,8 @@ module Storyblok
         })
       end
 
+      @renderer = Renderer::HtmlRenderer.new
+      @renderer.set_component_resolver(@configuration[:component_resolver])
       setup_logger
     end
 
@@ -187,6 +192,24 @@ module Storyblok
       unless cache.nil?
         cache.set('storyblok:' + configuration[:token] + ':version', Time.now.to_i.to_s)
       end
+    end
+
+    # Returns html from richtext field data
+    #
+    # @param [Hash] :data
+    #
+    # @return [String]
+    def render data
+      @renderer.render(data)
+    end
+
+    # Sets component resolver
+    #
+    # @param [Proc] :component_resolver
+    #
+    # @return [nil]
+    def set_component_resolver component_resolver
+      @renderer.set_component_resolver(component_resolver)
     end
 
     private

@@ -141,6 +141,39 @@ client.put("spaces/{space_id}/stories/{story_id}", {story: {name: 'new', slug: "
 client.delete("spaces/{space_id}/stories/{story_id}")
 ```
 
+## Rendering of richtext fields
+
+This SDK comes with a rendering service for richtext fields of Storyblok to get html output.
+
+### Rendering a richtext field
+
+```
+client.render(data.richtext_field)
+```
+
+### Define a component renderer
+
+Storyblok's richtext field also let's you insert content blocks. To render these blocks you can define a Lambda.
+
+```
+# Option 1: Define the resolver when initializing
+client = Storyblok::Client.new(
+  component_resolver: ->(component, data) => {
+    case component
+    when 'button'
+      "<button>#{data['text']}</button>"
+    when 'your_custom_component'
+      "<div class="welcome">#{data['welcome_text']}</div>"
+    end
+  }
+)
+
+# Option 2: Define the resolver afterwards
+client.set_component_resolver(->(component, data) {
+  "#{component}"
+})
+```
+
 
 ### License
 
