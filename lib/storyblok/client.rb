@@ -1,7 +1,7 @@
 require_relative 'request'
 require_relative 'links'
-require_relative 'renderer/html_renderer'
 
+require 'storyblok/richtext'
 require 'rest-client'
 require 'logger'
 require 'base64'
@@ -41,7 +41,7 @@ module Storyblok
         })
       end
 
-      @renderer = Renderer::HtmlRenderer.new
+      @renderer = Richtext::HtmlRenderer.new
       @renderer.set_component_resolver(@configuration[:component_resolver])
       setup_logger
     end
