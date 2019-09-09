@@ -147,7 +147,7 @@ This SDK comes with a rendering service for richtext fields of Storyblok to get 
 
 ### Rendering a richtext field
 
-```
+```ruby
 client.render(data.richtext_field)
 ```
 
@@ -155,7 +155,7 @@ client.render(data.richtext_field)
 
 Storyblok's richtext field also let's you insert content blocks. To render these blocks you can define a Lambda.
 
-```
+```ruby
 # Option 1: Define the resolver when initializing
 client = Storyblok::Client.new(
   component_resolver: ->(component, data) => {
