@@ -174,7 +174,7 @@ module Storyblok
       query = request_query(request.query)
       query_string = build_nested_query(query)
 
-      if cache.nil?
+      if cache.nil? or query[:uncached]
         result = run_request(endpoint, query_string)
       else
         version = cache.get('storyblok:' + configuration[:token] + ':version') || '0'
