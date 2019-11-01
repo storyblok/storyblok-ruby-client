@@ -171,13 +171,17 @@ module Storyblok
 
     def cached_get(request)
       endpoint = base_url + request.url
-      query = request_query(request.query)
-      query_string = build_nested_query(query)
 
-      if cache.nil? or query[:uncached]
+      if cache.nil?
+        query = request_query(request.query)
+        query_string = build_nested_query(query)
         result = run_request(endpoint, query_string)
       else
         version = cache.get('storyblok:' + configuration[:token] + ':version') || '0'
+
+        query = query = request_query({ cache_version: version }.merge(request.query))
+        query_string = build_nested_query(query)
+
         cache_key = 'storyblok:' + configuration[:token] + ':v:' + version + ':' + request.url + ':' + Base64.encode64(query_string)
 
         result = cache.cache(cache_key) do
