@@ -6,3 +6,4 @@ Gemfile.lock
 .idea
 *.DS_Store
 .ruby-version
+*.gem
