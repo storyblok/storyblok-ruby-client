@@ -12,7 +12,7 @@ module Storyblok
     DEFAULT_CONFIGURATION = {
       secure: true,
       api_url: 'api.storyblok.com',
-      api_version: 2,
+      api_version: 1,
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',
@@ -175,7 +175,7 @@ module Storyblok
       query = request_query(request.query)
       query_string = build_nested_query(query)
 
-      if cache.nil? || bypass_cache
+      if cache.nil? || bypass_cache || query[:version] == 'draft'
         result = run_request(endpoint, query_string)
       else
         cache_key = 'storyblok:' + configuration[:token] + ':v:' + query[:cv] + ':' + request.url + ':' + Base64.encode64(query_string)
