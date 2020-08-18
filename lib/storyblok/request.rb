@@ -5,10 +5,11 @@ module Storyblok
   class Request
     attr_reader :client, :type, :query, :id, :endpoint
 
-    def initialize(client, endpoint, query = {}, id = nil)
+    def initialize(client, endpoint, query = {}, id = nil, bypass_cache = false)
       @client = client
       @endpoint = endpoint
       @query = query
+      @bypass_cache = bypass_cache
 
       if id
         @type = :single
@@ -26,7 +27,7 @@ module Storyblok
 
     # Delegates the actual HTTP work to the client
     def get
-      client.cached_get(self)
+      client.cached_get(self, @bypass_cache)
     end
 
     # Returns a new Request object with the same data
