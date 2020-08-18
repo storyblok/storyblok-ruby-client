@@ -175,7 +175,7 @@ module Storyblok
       query = request_query(request.query)
       query_string = build_nested_query(query)
 
-      if cache.nil? || bypass_cache
+      if cache.nil? || bypass_cache || query[:version] == 'draft'
         result = run_request(endpoint, query_string)
       else
         cache_key = 'storyblok:' + configuration[:token] + ':v:' + query[:cv] + ':' + request.url + ':' + Base64.encode64(query_string)

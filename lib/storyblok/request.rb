@@ -13,7 +13,7 @@ module Storyblok
 
       if id
         @type = :single
-        @id = URI.escape(id)
+        @id = URI.encode_www_form_component(id)
       else
         @type = :multi
         @id = nil
