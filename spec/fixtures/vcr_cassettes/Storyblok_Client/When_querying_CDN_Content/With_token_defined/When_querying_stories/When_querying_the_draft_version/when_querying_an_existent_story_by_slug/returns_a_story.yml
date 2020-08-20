@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/stories/simple_content?cv=1597961320&token=<SPACE_PREVIEW_TOKEN>&version=draft
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '869'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Thu, 20 Aug 2020 22:08:46 GMT
+      Etag:
+      - W/"d73c57b606a3352593ebc12e3f321423"
+      Link:
+      - ''
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 07d47a2f-1278-454b-bffa-893cdacffb32
+      X-Runtime:
+      - '0.109606'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 02fe6e236b00f4dcbdb1bf5c172062d9.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GIG51-C1
+      X-Amz-Cf-Id:
+      - yNK8NrSNRRAF3x2hXBf1umDzNuOngs8xFFHegp9k2SQjxjosVA6cEA==
+    body:
+      encoding: UTF-8
+      string: '{"story":{"name":"simple_content","created_at":"2020-08-20T18:01:55.065Z","published_at":"2020-08-20T18:13:34.946Z","alternates":[],"id":18409805,"uuid":"fe520269-b092-482c-94c4-8028eb81af41","content":{"_uid":"ae111a76-84b7-43cc-a6a0-77a70de1b6f4","component":"SimpleTextContentType","SimpleText":"Simple
+        Content from a Simple Text DRAFT VERSION","_editable":"\u003c!--#storyblok#{\"name\":
+        \"SimpleTextContentType\", \"space\": \"91322\", \"uid\": \"ae111a76-84b7-43cc-a6a0-77a70de1b6f4\",
+        \"id\": \"18409805\"}--\u003e"},"slug":"simple_content","full_slug":"simple_content","default_full_slug":null,"sort_by_date":null,"position":0,"tag_list":[],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.759Z","release_id":null,"lang":"default","path":null,"translated_slugs":[]}}'
+  recorded_at: Thu, 20 Aug 2020 22:08:46 GMT
+recorded_with: VCR 6.0.0

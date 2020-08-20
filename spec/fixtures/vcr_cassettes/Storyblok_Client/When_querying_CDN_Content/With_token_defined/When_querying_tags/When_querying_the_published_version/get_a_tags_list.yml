@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/tags?cv=1597960900&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '98'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=604800, max-age=0
+      Date:
+      - Thu, 20 Aug 2020 22:01:47 GMT
+      Etag:
+      - W/"80450524d9d5e5dff8c98ef7311adc86"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - bf16f28f-d3a1-4800-a5e3-841202cd8135
+      X-Runtime:
+      - '0.012773'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9b140cb214dc166129350e47b923d352.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GIG51-C1
+      X-Amz-Cf-Id:
+      - zDquV2g1zuq9O5zszgez4P5fqKdiQb0t6JzhgZ1WuwvlLw63AL5VHw==
+    body:
+      encoding: UTF-8
+      string: '{"tags":[{"name":"my another tag","taggings_count":1},{"name":"my first
+        tag","taggings_count":1}]}'
+  recorded_at: Thu, 20 Aug 2020 22:01:47 GMT
+recorded_with: VCR 6.0.0
