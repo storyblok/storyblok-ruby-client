@@ -221,6 +221,26 @@ describe Storyblok::Client do
         end
       end
 
+      context "When querying datasources" do
+        context "When querying the published version" do
+          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          it "returns a datasources list", :vcr do
+            expect(subject.datasources['data']).to eq(
+              {
+                "datasources" => [
+                  {
+                    "dimensions"=>[],
+                    "id"=>23537,
+                    "name"=>"my_datasource",
+                    "slug"=>"my-datasource-slug"
+                  }
+                ]
+              }
+            )
+          end
+        end
+      end
+
       context "When querying datasource_entries" do
         context "When querying the published version" do
           let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
@@ -325,6 +345,107 @@ describe Storyblok::Client do
                     "uuid"=>"fe520269-b092-482c-94c4-8028eb81af41"
                   }
                 }
+              }
+            )
+          end
+        end
+      end
+
+      context "When querying Space Info" do
+        context "When querying the published version", :vcr do
+          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          it "get the space info" do
+            expect(subject.space['data']).to eq(
+              {
+                "space"=>{
+                  "id"=>91322,
+                  "name"=>"My Cool Space",
+                  "domain"=>"https://quickstart.me.storyblok.com/",
+                  "version"=>1597954133,
+                  "language_codes"=>[]
+                }
+              }
+            )
+          end
+        end
+      end
+
+      context "When getting a content tree" do
+        context "When querying the published version" do
+          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          it "get a content tree", :vcr  do
+            expect(subject.tree).to eq(
+              {
+                18409844 =>
+                 {
+                   'item' =>
+                     {
+                       'id' => 18409844,
+                       'slug' => 'my-folder-slug',
+                       'name' => 'my_folder_name',
+                       'is_folder' => true,
+                       'parent_id' => 0,
+                       'published' => false,
+                       'position' => -10,
+                       'uuid' => '73330f5f-5dc9-4876-90c6-8ef0f21252a0',
+                       'is_startpage' => false,
+                       'real_path' => '/my-folder-slug'
+                     },
+                   'children' =>
+                         {
+                           18409847 =>
+                            {
+                              'item' =>
+                                 {
+                                   'id' => 18409847,
+                                   'slug' => 'my-folder-slug/simple_content_2',
+                                   'name' => 'simple_content_2',
+                                   'is_folder' => false,
+                                   'parent_id' => 18409844,
+                                   'published' => true,
+                                   'position' => -10,
+                                   'uuid' => '4b069560-749d-4f2b-8304-97a2a465fb49',
+                                   'is_startpage' => false,
+                                   'real_path' => '/my-folder-slug/simple_content_2'
+                                 },
+                              'children' => {}
+                            },
+                           18409845 =>
+                   {
+                     'item' =>
+                        {
+                          'id' => 18409845,
+                          'slug' => 'my-folder-slug/simple_content_1',
+                          'name' => 'simple_content_1',
+                          'is_folder' => false,
+                          'parent_id' => 18409844,
+                          'published' => true,
+                          'position' => 0,
+                          'uuid' => '542e19cc-ff06-4f19-ae64-a725c89e3406',
+                          'is_startpage' => false,
+                          'real_path' => '/my-folder-slug/simple_content_1'
+                        },
+                     'children' => {}
+                   }
+                         }
+                 },
+                18409805 =>
+              {
+                'item' =>
+                  {
+                    'id' => 18409805,
+                    'slug' => 'simple_content',
+                    'name' => 'simple_content',
+                    'is_folder' => false,
+                    'parent_id' => 0,
+                    'published' => true,
+                    'position' => 0,
+                    'uuid' => 'fe520269-b092-482c-94c4-8028eb81af41',
+                    'is_startpage' => false,
+                    'real_path' => '/simple_content'
+                  },
+                'children' => {}
+              }
               }
             )
           end
