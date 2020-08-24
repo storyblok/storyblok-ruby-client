@@ -3,7 +3,9 @@ module Storyblok
     class Redis
       DEFAULT_CONFIGURATION = {
         ttl: 60 * 60 * 24
-      }
+      }.freeze
+
+      attr_reader :redis
 
       def initialize(*args)
         options = args.last.is_a?(::Hash) ? args.pop : {}
