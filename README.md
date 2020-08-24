@@ -183,6 +183,32 @@ gem build storyblok.gemspec
 gem push storyblok-2.0.X.gem
 ~~~
 
+### Running Tests
+We use [RSpec](http://rspec.info/) for testing.
+
+#### To run the whole test suite you will need export the environment variables, ATTENTION when running the test suit with the variable `REDIS_URL` exported, the test suite will remove the keys with this pattern `storyblok:*` from the redis database defined by `REDIS_URL`
+
+```bash
+export REDIS_URL="redis://localhost:6379"
+```
+
+Optionally you can generate the test report coverage by setting the environment variable
+
+```bash
+export COVERAGE=true
+```
+
+To run the whole test suite use the following command:
+
+```bash
+rspec
+```
+
+To run tests without redis cache tests (for when you don't have redis, or to avoid the test suite to remove the keys with this pattern `storyblok:*` ):
+
+```bash
+rspec --tag ~redis_cache:true
+```
 
 ### License
 
