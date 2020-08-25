@@ -519,4 +519,191 @@ describe Storyblok::Client do
       end
     end
   end
+
+  context "When Managing the Space" do
+    context "With oauth_token defined" do
+      let(:oauth_token) { '<MY_PERSONAL_ACCESS_TOKEN>' }
+      subject { described_class.new(oauth_token: oauth_token) }
+
+      context "When performing a GET request" do
+        context "Listing spaces" do
+          subject { super().get('spaces') }
+
+          it "returns a space list", :vcr do
+            expect(subject['data']).to eq({
+              "spaces"=> [
+                { "name"=>"Clean Space",     "id"=>91322, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"blog_space",      "id"=>91112, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"My beta Space",   "id"=>88422, "euid"=>"",  "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"My new Space",    "id"=>86092, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"Your demo space", "id"=>85563, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" }
+              ]
+            })
+          end
+        end
+      end
+
+      context "When performing a POST request" do
+        context "Creating a story" do
+          subject { super().post("spaces/#{space_id}/stories", story_params) }
+          let(:space_id) { 91322 }
+          let(:story_params) { { story: { name: 'my awesome new story', slug: 'my-awesome-new-story' } } }
+
+          it "creates a story", :vcr do
+            expect(subject['headers'][:status]).to eq("201 Created")
+            expect(subject['data']).to eq({
+              "story"=>{
+                "name"=>"my awesome new story",
+                "parent_id"=>0,
+                "group_id"=>"7a015f0b-1585-4e17-8f32-adf2755087bb",
+                "alternates"=>[],
+                "created_at"=>"2020-08-25T16:23:38.022Z",
+                "sort_by_date"=>nil,
+                "tag_list"=>[],
+                "updated_at"=>"2020-08-25T16:23:38.022Z",
+                "published_at"=>nil,
+                "id"=>18670449,
+                "uuid"=>"defee8f9-0704-4855-aebc-6d37908297ea",
+                "is_folder"=>false,
+                "content"=>{"component"=>"root", "body"=>[], "_uid"=>"fa221d61-73ba-4435-82a9-26ac1cf4bf11"},
+                "published"=>false,
+                "slug"=>"my-awesome-new-story",
+                "path"=>nil,
+                "full_slug"=>"my-awesome-new-story",
+                "default_root"=>nil,
+                "disble_fe_editor"=>false,
+                "parent"=>nil,
+                "is_startpage"=>false,
+                "unpublished_changes"=>false,
+                "meta_data"=>nil,
+                "imported_at"=>nil,
+                "preview_token"=>{"token"=>"<PREVIEW_TOKEN>", "timestamp"=>"1598372618"},
+                "pinned"=>false,
+                "breadcrumbs"=>[],
+                "publish_at"=>nil,
+                "expire_at"=>nil,
+                "first_published_at"=>nil,
+                "last_author"=>{"id"=>"<OWNER_ID_INTEGER>", "userid"=>"<MY_USER_EMAIL>", "friendly_name"=>"<MY_USER_EMAIL>"},
+                "user_ids"=>[],
+                "space_role_ids"=>[],
+                "translated_slugs"=>[],
+                "localized_paths"=>[],
+                "position"=>-20,
+                "translated_stories"=>[],
+                "can_not_view"=>nil
+              }
+            })
+          end
+        end
+      end
+
+      context "When performing a PUT request" do
+        context "Updating a story" do
+          subject { super().put("spaces/#{space_id}/stories/#{story_id}", story_params) }
+          let(:space_id) { 91322 }
+          let(:story_id) { 18670449 }
+          let(:story_params) { { story: { name: 'my awesome updated story' } } }
+
+          it "updates a story", :vcr do
+            expect(subject['headers'][:status]).to eq("200 OK")
+            expect(subject['data']).to eq({
+              "story"=>{
+                "name"=>"my awesome updated story",
+                "parent_id"=>0,
+                "group_id"=>"7a015f0b-1585-4e17-8f32-adf2755087bb",
+                "alternates"=>[],
+                "created_at"=>"2020-08-25T16:23:38.022Z",
+                "sort_by_date"=>nil,
+                "tag_list"=>[],
+                "updated_at"=>"2020-08-25T18:03:04.115Z",
+                "published_at"=>nil,
+                "id"=>18670449,
+                "uuid"=>"defee8f9-0704-4855-aebc-6d37908297ea",
+                "is_folder"=>false,
+                "content"=>{"_uid"=>"fa221d61-73ba-4435-82a9-26ac1cf4bf11", "body"=>[], "component"=>"root"},
+                "published"=>false,
+                "slug"=>"my-awesome-new-story",
+                "path"=>nil,
+                "full_slug"=>"my-awesome-new-story",
+                "default_root"=>nil,
+                "disble_fe_editor"=>false,
+                "parent"=>nil,
+                "is_startpage"=>false,
+                "unpublished_changes"=>true,
+                "meta_data"=>nil,
+                "imported_at"=>nil,
+                "preview_token"=>{"token"=>"d5681a1d0e5d798582a0e6ed791c6bfa1f618e54", "timestamp"=>"1598378584"},
+                "pinned"=>false,
+                "breadcrumbs"=>[],
+                "publish_at"=>nil,
+                "expire_at"=>nil,
+                "first_published_at"=>nil,
+                "last_author"=>{"id"=>"<OWNER_ID_INTEGER>", "userid"=>"<MY_USER_EMAIL>", "friendly_name"=>"<MY_USER_EMAIL>"},
+                "user_ids"=>[],
+                "space_role_ids"=>[],
+                "translated_slugs"=>[],
+                "localized_paths"=>[],
+                "position"=>-20,
+                "translated_stories"=>[],
+                "can_not_view"=>nil
+              }
+            })
+          end
+        end
+      end
+
+      context "When performing a DELETE request" do
+        context "deleting a story" do
+          subject { super().delete("spaces/#{space_id}/stories/#{story_id}") }
+          let(:space_id) { 91322 }
+          let(:story_id) { 18670449 }
+          it "deletes a story", :vcr do
+            expect(subject['headers'][:status]).to eq("200 OK")
+            expect(subject['data']).to eq({
+              "story"=> {
+                "name"=>"my awesome updated story",
+                "parent_id"=>0,
+                "group_id"=>"7a015f0b-1585-4e17-8f32-adf2755087bb",
+                "alternates"=>[],
+                "created_at"=>"2020-08-25T16:23:38.022Z",
+                "sort_by_date"=>nil,
+                "tag_list"=>[],
+                "updated_at"=>"2020-08-25T18:03:04.115Z",
+                "published_at"=>nil,
+                "id"=>18670449,
+                "uuid"=>"defee8f9-0704-4855-aebc-6d37908297ea",
+                "is_folder"=>false,
+                "content"=>{"_uid"=>"fa221d61-73ba-4435-82a9-26ac1cf4bf11", "body"=>[], "component"=>"root"},
+                "published"=>false,
+                "slug"=>"my-awesome-new-story",
+                "path"=>nil,
+                "full_slug"=>"my-awesome-new-story",
+                "default_root"=>nil,
+                "disble_fe_editor"=>false,
+                "parent"=>nil,
+                "is_startpage"=>false,
+                "unpublished_changes"=>true,
+                "meta_data"=>nil,
+                "imported_at"=>nil,
+                "preview_token"=>{"token"=>"af676cb58efa328b9f6c30251b9212598c66d55b", "timestamp"=>"1598378897"},
+                "pinned"=>false,
+                "breadcrumbs"=>[],
+                "publish_at"=>nil,
+                "expire_at"=>nil,
+                "first_published_at"=>nil,
+                "last_author"=>{"id"=>"<OWNER_ID_INTEGER>", "userid"=>"<MY_USER_EMAIL>", "friendly_name"=>"<MY_USER_EMAIL>"},
+                "user_ids"=>[],
+                "space_role_ids"=>[],
+                "translated_slugs"=>[],
+                "localized_paths"=>[],
+                "position"=>-20,
+                "translated_stories"=>[],
+                "can_not_view"=>nil
+              }
+            })
+          end
+        end
+      end
+    end
+  end
 end

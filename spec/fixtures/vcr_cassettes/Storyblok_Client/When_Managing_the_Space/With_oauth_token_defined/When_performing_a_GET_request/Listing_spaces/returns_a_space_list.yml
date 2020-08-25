@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 17:53:18 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - da15eca1-625b-4343-83cb-3d6eaf45fd1c
+      X-Runtime:
+      - '0.073948'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 1771886d2860f832da6663a86b97d96b.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - NdXwWs-3us4YwnkGmVv4N4JMCszSyzO0ut30mlxvCt3PgXrD50kaDQ==
+    body:
+      encoding: UTF-8
+      string: '{"spaces":[{"name":"Clean Space","id":91322,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"blog_space","id":91112,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"My
+        beta Space","id":88422,"euid":"","owner_id":"<OWNER_ID_INTEGER>"},{"name":"My new Space","id":86092,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"Your
+        demo space","id":85563,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"}]}'
+  recorded_at: Tue, 25 Aug 2020 17:53:19 GMT
+recorded_with: VCR 6.0.0
