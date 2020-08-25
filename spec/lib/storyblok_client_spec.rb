@@ -454,6 +454,26 @@ describe Storyblok::Client do
         end
       end
 
+      describe "#get_from_cdn" do
+        let(:params) { { token: '<SPACE_PUBLIC_TOKEN>', version: 'published' } }
+        it "get a tags list", :vcr do
+          expect(subject.get_from_cdn('tags')['data']).to eq(
+              {
+                "tags"=>[
+                  {
+                    "name"=>"my another tag",
+                    "taggings_count"=>1
+                  },
+                  {
+                    "name"=>"my first tag",
+                    "taggings_count"=>1
+                  }
+                ]
+              }
+            )
+        end
+      end
+
       context "When caching is enabled", redis_cache: true do
         before { redis_client.keys("storyblok:*").each { |e| redis_client.del(e) } }
         let(:redis_client) {
