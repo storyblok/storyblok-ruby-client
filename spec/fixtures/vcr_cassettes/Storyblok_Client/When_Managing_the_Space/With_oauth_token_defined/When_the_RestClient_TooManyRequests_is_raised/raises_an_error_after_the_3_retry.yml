@@ -1,0 +1,242 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:32:43 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 2bdc159d-47f1-4b48-ac01-5aed04fda96e
+      X-Runtime:
+      - '0.125880'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 fde77bc593637d1899bb4f1a15b66f65.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - PLL7sIz2vLRBBwzbWgq6Bw6zi0xIqV-zWYL43YOArwRw3ACoQapT6w==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:32:43 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:33:29 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 4efb01bd-02e8-4adb-8040-caa8bb0d7d27
+      X-Runtime:
+      - '0.081578'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 de47ab1525e5ccb6b412b31752f32ff6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - f2aQaxrm47crtWeeALlNOoAWLH_LPVnYlGJE4NIv1CG7Px4m-YnL4Q==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:33:29 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:34:09 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - c501ac93-c7b2-46a9-b3e0-db1f2a362ed7
+      X-Runtime:
+      - '0.074105'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 11fda4b51957df303adb5c964da00505.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - bNlM7bCb9-E8JRL65zW2-KpvM-C1keHMWG2TVfvyt3IMXjrDci50QQ==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:34:09 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:35:06 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - f0c10ccd-cb21-4f96-a32e-36edfb6e47fb
+      X-Runtime:
+      - '0.094631'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 de47ab1525e5ccb6b412b31752f32ff6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - RrZ0d7UFxOPtBviNHiWdPpW_rz-aMDZ7N0vbgh8H9o5qwRCrb344Bw==
+    body:
+      encoding: UTF-8
+      string: '{}'
+  recorded_at: Tue, 25 Aug 2020 19:35:07 GMT
+recorded_with: VCR 6.0.0

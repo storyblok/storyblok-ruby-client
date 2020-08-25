@@ -704,6 +704,31 @@ describe Storyblok::Client do
           end
         end
       end
+
+      context "When the RestClient::TooManyRequests is raised" do # YOUR API CALL LIMIT HAS BEEN REACHED
+        subject { super().get('spaces') }
+        it "auto retry the request for 3 times before raise error" do
+          # This cassette was manually edited to allow test this scenario
+          VCR.use_cassette('Storyblok_Client/When_Managing_the_Space/With_oauth_token_defined/When_the_RestClient_TooManyRequests_is_raised/auto_retry_the_request_for_3_times_before_raise_error') do
+            expect(subject['data']).to eq({
+              "spaces"=> [
+                { "name"=>"Clean Space",     "id"=>91322, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"blog_space",      "id"=>91112, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"My beta Space",   "id"=>88422, "euid"=>"",  "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"My new Space",    "id"=>86092, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" },
+                { "name"=>"Your demo space", "id"=>85563, "euid"=>nil, "owner_id"=>"<OWNER_ID_INTEGER>" }
+              ]
+            })
+          end
+        end
+
+        it "raises an error after the 3 retry" do
+          # This cassette was manually edited to allow test this scenario
+          VCR.use_cassette('Storyblok_Client/When_Managing_the_Space/With_oauth_token_defined/When_the_RestClient_TooManyRequests_is_raised/raises an error after the 3 retry') do
+            expect{ subject['data'] }.to raise_error(RestClient::TooManyRequests)
+          end
+        end
+      end
     end
   end
 end
