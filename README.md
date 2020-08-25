@@ -158,12 +158,12 @@ Storyblok's richtext field also let's you insert content blocks. To render these
 ```ruby
 # Option 1: Define the resolver when initializing
 client = Storyblok::Client.new(
-  component_resolver: ->(component, data) => {
+  component_resolver: ->(component, data) {
     case component
     when 'button'
       "<button>#{data['text']}</button>"
     when 'your_custom_component'
-      "<div class="welcome">#{data['welcome_text']}</div>"
+      "<div class='welcome'>#{data['welcome_text']}</div>"
     end
   }
 )

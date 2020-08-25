@@ -16,7 +16,10 @@ module Storyblok
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',
+      # :nocov:
       component_resolver: ->(component, data) { '' },
+      # :nocov:
+      cache_version: Time.now.to_i,
       cache: nil
     }
 

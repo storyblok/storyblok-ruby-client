@@ -506,6 +506,46 @@ describe Storyblok::Client do
         end
       end
 
+      context "When using a renderer" do
+        let(:token) { '<SPACE_PUBLIC_TOKEN>' }
+        let(:version) { 'published' }
+
+        let(:data) {
+          {
+            'type' => 'doc',
+            'content' => [
+              {
+                'type' => 'paragraph',
+                'content' => [ {'text' => 'Good', 'type' => 'text'}]
+              },
+              {
+                'type' => 'blok',
+                'attrs' => { 'body' => [{'component' => 'button', 'text' => 'Click me'}] }
+              }
+            ]
+          }
+        }
+
+        context "When setting a renderer at client initialization" do
+          subject { described_class.new(token: token, version: version, component_resolver: component_resolver) }
+          let(:component_resolver) { ->(component, data) { "Placeholder for #{component}: #{data['text']}" } }
+
+          it "returns data rendered with component_resolver" do
+            expect(subject.render(data)).to eq("<p>Good</p>Placeholder for button: Click me")
+          end
+        end
+
+        context "When setting a renderer after client initialization" do
+          subject { described_class.new(token: token, version: version) }
+          let(:component_resolver) { ->(component, data) { "Placeholder for #{component}: #{data['text']}" } }
+
+          it "set renderer and returns data rendered with component_resolver" do
+            subject.set_component_resolver(component_resolver)
+            expect(subject.render(data)).to eq("<p>Good</p>Placeholder for button: Click me")
+          end
+        end
+      end
+
       context "When caching is enabled", redis_cache: true do
         before { redis_client.keys("storyblok:*").each { |e| redis_client.del(e) } }
         let(:redis_client) {
