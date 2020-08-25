@@ -474,6 +474,38 @@ describe Storyblok::Client do
         end
       end
 
+      context "When the RestClient::TooManyRequests is raised" do # YOUR API CALL LIMIT HAS BEEN REACHED
+        subject { super().tags }
+
+        let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+        it "auto retry the request for 3 times before raise error" do
+          # This cassette was manually edited to allow test this scenario
+          VCR.use_cassette('Storyblok_Client/When_querying_CDN_Content/With_token_defined/When_the_RestClient_TooManyRequests_is_raised/auto_retry_the_request_for_3_times_before_raise_error') do
+            expect(subject['data']).to eq(
+              {
+                "tags"=>[
+                  {
+                    "name"=>"my another tag",
+                    "taggings_count"=>1
+                  },
+                  {
+                    "name"=>"my first tag",
+                    "taggings_count"=>1
+                  }
+                ]
+              }
+            )
+          end
+        end
+
+        it "raises an error after the 3 retry" do
+          # This cassette was manually edited to allow test this scenario
+          VCR.use_cassette('Storyblok_Client/When_querying_CDN_Content/With_token_defined/When_the_RestClient_TooManyRequests_is_raised/raises an error after the 3 retry') do
+            expect{ subject['data'] }.to raise_error(RestClient::TooManyRequests)
+          end
+        end
+      end
+
       context "When caching is enabled", redis_cache: true do
         before { redis_client.keys("storyblok:*").each { |e| redis_client.del(e) } }
         let(:redis_client) {
