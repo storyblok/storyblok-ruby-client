@@ -4,13 +4,18 @@ require 'redis'
 require 'spec_helper'
 
 describe Storyblok::Client do
-  subject { described_class.new(params) }
+  subject { described_class.new(token: token, version: version) }
 
   context "When querying CDN Content" do
+
     context "With token defined" do
+      let(:token) { '<SPACE_PUBLIC_TOKEN>' }
+
       context "When querying stories" do
+
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
+
           context "when querying an existent story by slug" do
             it "returns a story", :vcr do
               expect(subject.story('simple_content')['data']).to eq({
@@ -114,7 +119,9 @@ describe Storyblok::Client do
         end
 
         context "When querying the draft version" do
-          let(:params) { {token: '<SPACE_PREVIEW_TOKEN>'} }
+          subject { described_class.new(token: token) }
+
+          let(:token) { '<SPACE_PREVIEW_TOKEN>' }
 
           context "when querying an existent story by slug" do
             it "returns a story", :vcr do
@@ -225,7 +232,7 @@ describe Storyblok::Client do
 
       context "When querying datasources" do
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "returns a datasources list", :vcr do
             expect(subject.datasources['data']).to eq(
               {
@@ -245,7 +252,7 @@ describe Storyblok::Client do
 
       context "When querying datasource_entries" do
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "returns a datasource_entries list", :vcr do
             expect(subject.datasource_entries['data']).to eq(
               {
@@ -271,7 +278,7 @@ describe Storyblok::Client do
 
       context "When querying tags" do
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "get a tags list", :vcr do
             expect(subject.tags['data']).to eq(
               {
@@ -293,7 +300,7 @@ describe Storyblok::Client do
 
       context "When querying links" do
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "get a links list", :vcr do
             expect(subject.links['data']).to eq(
               {
@@ -355,7 +362,7 @@ describe Storyblok::Client do
 
       context "When querying Space Info" do
         context "When querying the published version", :vcr do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "get the space info" do
             expect(subject.space['data']).to eq(
               {
@@ -374,7 +381,7 @@ describe Storyblok::Client do
 
       context "When getting a content tree" do
         context "When querying the published version" do
-          let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+          let(:version) { 'published' }
           it "get a content tree", :vcr  do
             expect(subject.tree).to eq(
               {
@@ -455,7 +462,7 @@ describe Storyblok::Client do
       end
 
       describe "#get_from_cdn" do
-        let(:params) { { token: '<SPACE_PUBLIC_TOKEN>', version: 'published' } }
+        let(:version) { 'published' }
         it "get a tags list", :vcr do
           expect(subject.get_from_cdn('tags')['data']).to eq(
               {
@@ -477,7 +484,7 @@ describe Storyblok::Client do
       context "When the RestClient::TooManyRequests is raised" do # YOUR API CALL LIMIT HAS BEEN REACHED
         subject { super().tags }
 
-        let(:params) { {token: '<SPACE_PUBLIC_TOKEN>', version: 'published'} }
+        let(:version) { 'published' }
         it "auto retry the request for 3 times before raise error" do
           # This cassette was manually edited to allow test this scenario
           VCR.use_cassette('Storyblok_Client/When_querying_CDN_Content/With_token_defined/When_the_RestClient_TooManyRequests_is_raised/auto_retry_the_request_for_3_times_before_raise_error') do
@@ -547,17 +554,16 @@ describe Storyblok::Client do
       end
 
       context "When caching is enabled", redis_cache: true do
+        subject { described_class.new(token: token, version: version, cache: cache) }
         before { redis_client.keys("storyblok:*").each { |e| redis_client.del(e) } }
         let(:redis_client) {
           raise StandardError, "Environment variable 'REDIS_URL' is not defined" if ENV['REDIS_URL'].nil?
           Redis.new(url: ENV['REDIS_URL'])
         }
 
-        let(:params) {
-          cache = Storyblok::Cache::Redis.new(redis: redis_client)
-          { token: '<SPACE_PUBLIC_TOKEN>', version: 'published', cache: cache }
-        }
-
+        let(:cache) { Storyblok::Cache::Redis.new(redis: redis_client) }
+        let(:token) { '<SPACE_PUBLIC_TOKEN>' }
+        let(:version) { 'published' }
         let(:tags_response_expected) { {
           "tags"=>[
             {
