@@ -17,11 +17,11 @@ module Storyblok
       log_level: Logger::INFO,
       version: 'draft',
       component_resolver: ->(component, data) { '' },
-      cache_version: Time.now.to_i,
       cache: nil
     }
 
     attr_reader :configuration, :logger
+    attr_accessor :cache_version
 
     # @param [Hash] given_configuration
     # @option given_configuration [String] :token Required if oauth_token is not set
@@ -33,6 +33,7 @@ module Storyblok
     # @option given_configuration [::Logger::DEBUG, ::Logger::INFO, ::Logger::WARN, ::Logger::ERROR] :log_level
     def initialize(given_configuration = {})
       @configuration = default_configuration.merge(given_configuration)
+      @cache_version = '0'
       validate_configuration!
 
       if configuration[:oauth_token]
@@ -62,7 +63,7 @@ module Storyblok
     #
     # @return [Hash]
     def space(query = {})
-      Request.new(self, '/cdn/spaces/me', query).get
+      Request.new(self, '/cdn/spaces/me', query, nil, true).get
     end
 
     # Gets a collection of stories
@@ -169,20 +170,15 @@ module Storyblok
       parse_result(res)
     end
 
-    def cached_get(request)
+    def cached_get(request, bypass_cache = false)
       endpoint = base_url + request.url
+      query = request_query(request.query)
+      query_string = build_nested_query(query)
 
-      if cache.nil?
-        query = request_query(request.query)
-        query_string = build_nested_query(query)
+      if cache.nil? || bypass_cache || query[:version] == 'draft'
         result = run_request(endpoint, query_string)
       else
-        version = cache.get('storyblok:' + configuration[:token] + ':version') || '0'
-
-        query = query = request_query({ cache_version: version }.merge(request.query))
-        query_string = build_nested_query(query)
-
-        cache_key = 'storyblok:' + configuration[:token] + ':v:' + version + ':' + request.url + ':' + Base64.encode64(query_string)
+        cache_key = 'storyblok:' + configuration[:token] + ':v:' + query[:cv] + ':' + request.url + ':' + Base64.encode64(query_string)
 
         result = cache.cache(cache_key) do
           run_request(endpoint, query_string)
@@ -194,7 +190,7 @@ module Storyblok
 
     def flush
       unless cache.nil?
-        cache.set('storyblok:' + configuration[:token] + ':version', Time.now.to_i.to_s)
+        cache.set('storyblok:' + configuration[:token] + ':version', space['data']['space']['version'])
       end
     end
 
@@ -240,14 +236,27 @@ module Storyblok
         raise
       end
 
-      {'headers' => res.headers, 'data' => JSON.parse(res.body)}.to_json
+      body = JSON.parse(res.body)
+      self.cache_version = body['cv'] if body['cv']
+
+      unless cache.nil?
+        cache.set('storyblok:' + configuration[:token] + ':version', cache_version)
+      end
+
+      {'headers' => res.headers, 'data' => body}.to_json
     end
 
     # Patches a query hash with the client configurations for queries
     def request_query(query)
       query[:token] = configuration[:token] if query[:token].nil?
       query[:version] = configuration[:version] if query[:version].nil?
-      query[:cv] = configuration[:cache_version] if query[:cache_version].nil?
+
+      unless cache.nil?
+        query[:cv] = (cache.get('storyblok:' + configuration[:token] + ':version') or cache_version) if query[:cv].nil?
+      else
+        query[:cv] = cache_version if query[:cv].nil?
+      end
+
       query
     end
 

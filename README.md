@@ -174,6 +174,15 @@ client.set_component_resolver(->(component, data) {
 })
 ```
 
+### Contribute
+
+How to build a gem file.
+
+~~~
+gem build storyblok.gemspec
+gem push storyblok-2.0.X.gem
+~~~
+
 
 ### License
 
