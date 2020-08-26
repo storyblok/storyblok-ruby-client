@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.storyblok.com/v1/spaces/91322/stories
+    body:
+      encoding: UTF-8
+      string: story[name]=my+awesome+new+story&story[slug]=my-awesome-new-story
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Content-Length:
+      - '65'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1088'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 16:23:38 GMT
+      Etag:
+      - W/"7c2fdcb54be2045e9dbfaa78da6fc373"
+      Server:
+      - nginx/1.12.1 + Phusion Passenger 4.0.60
+      Status:
+      - 201 Created
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Powered-By:
+      - Phusion Passenger 4.0.60
+      X-Request-Id:
+      - fff0830e-8f87-4b05-aac5-9216c3b0bf7f
+      X-Runtime:
+      - '0.080896'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 43a4d3e4259eb061aec1bfcb6d130de6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - wuB8-IyTT7m0JnO7JIKtXYldi-wUycjKKR51zeG8iy5_8BDTmDM1sg==
+    body:
+      encoding: UTF-8
+      string: '{"story":{"name":"my awesome new story","parent_id":0,"group_id":"7a015f0b-1585-4e17-8f32-adf2755087bb","alternates":[],"created_at":"2020-08-25T16:23:38.022Z","sort_by_date":null,"tag_list":[],"updated_at":"2020-08-25T16:23:38.022Z","published_at":null,"id":18670449,"uuid":"defee8f9-0704-4855-aebc-6d37908297ea","is_folder":false,"content":{"component":"root","body":[],"_uid":"fa221d61-73ba-4435-82a9-26ac1cf4bf11"},"published":false,"slug":"my-awesome-new-story","path":null,"full_slug":"my-awesome-new-story","default_root":null,"disble_fe_editor":false,"parent":null,"is_startpage":false,"unpublished_changes":false,"meta_data":null,"imported_at":null,"preview_token":{"token":"<PREVIEW_TOKEN>","timestamp":"1598372618"},"pinned":false,"breadcrumbs":[],"publish_at":null,"expire_at":null,"first_published_at":null,"last_author":{"id":"<OWNER_ID_INTEGER>","userid":"<MY_USER_EMAIL>","friendly_name":"<MY_USER_EMAIL>"},"user_ids":[],"space_role_ids":[],"translated_slugs":[],"localized_paths":[],"position":-20,"translated_stories":[],"can_not_view":null}}'
+  recorded_at: Tue, 25 Aug 2020 16:23:38 GMT
+recorded_with: VCR 6.0.0

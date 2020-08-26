@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/spaces/me?cv=1598026697&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '132'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=2, max-age=0
+      Date:
+      - Fri, 21 Aug 2020 16:18:18 GMT
+      Etag:
+      - W/"dcf2a3b740affacd7f577bf99be913eb"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 62e986fa-0f5b-47b6-894d-7c23c9ad8dc0
+      X-Runtime:
+      - '0.011238'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 87ce2712fe7ed176a0f0d2d4a585feda.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - y981QfWMyk6RQwYMzjuYwZ-9_6bxmeUIB1UE-_PHszu59rdO6De5jA==
+    body:
+      encoding: UTF-8
+      string: '{"space":{"id":91322,"name":"My Cool Space","domain":"https://quickstart.me.storyblok.com/","version":1597954133,"language_codes":[]}}'
+  recorded_at: Fri, 21 Aug 2020 16:18:19 GMT
+recorded_with: VCR 6.0.0

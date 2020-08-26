@@ -1,0 +1,183 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/tags?cv=0&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '206'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=604800, max-age=0
+      Date:
+      - Wed, 26 Aug 2020 15:55:56 GMT
+      Etag:
+      - W/"c15771c638ba6aba86aef723d86c6bd7"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 110d0fe8-669f-4160-b95e-9744eb4bc5aa
+      X-Runtime:
+      - '0.008969'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 c7b903a344ef1d9cbce9926c4b40749e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - 5yoOk3Gb2c_C1EsuRWp2pABKtrXgyvpOaKoUGTQ-YYWu5k9OMrUoAw==
+      Age:
+      - '7066'
+    body:
+      encoding: UTF-8
+      string: '{"tags":[{"name":"my another tag","taggings_count":1},{"name":"my first
+        tag","taggings_count":1}]}'
+  recorded_at: Wed, 26 Aug 2020 17:53:42 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/spaces/me?cv=0&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '132'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=2, max-age=0
+      Date:
+      - Wed, 26 Aug 2020 17:53:43 GMT
+      Etag:
+      - W/"ef3b813279af71b6f6332628e093336d"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 43a0c508-4884-4095-b377-0045a9478166
+      X-Runtime:
+      - '0.008019'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 4f92a3eafc119ef8495c3d89d926f352.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - L-2w3eLSvRE6V442OEax7G0l7MogkyoA2sgRAguH5_hluxvHP3M6hg==
+    body:
+      encoding: UTF-8
+      string: '{"space":{"id":91322,"name":"Clean Space","domain":"https://quickstart.me.storyblok.com/","version":1598450511,"language_codes":[]}}'
+  recorded_at: Wed, 26 Aug 2020 17:53:43 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/tags?cv=1598450511&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '206'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=604800, max-age=0
+      Date:
+      - Wed, 26 Aug 2020 17:51:51 GMT
+      Etag:
+      - W/"c15771c638ba6aba86aef723d86c6bd7"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - debe3e4a-efa7-4d18-bdf6-5c53750d583a
+      X-Runtime:
+      - '0.016453'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 de47ab1525e5ccb6b412b31752f32ff6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - pAEFQ2xXr0C9ZKmeaRSBJydu09pqeObxa-blPvo-OMkulcjAKjg7JA==
+      Age:
+      - '113'
+    body:
+      encoding: UTF-8
+      string: '{"tags":[{"name":"my another tag","taggings_count":1},{"name":"my first
+        tag","taggings_count":1}]}'
+  recorded_at: Wed, 26 Aug 2020 17:53:44 GMT
+recorded_with: VCR 6.0.0

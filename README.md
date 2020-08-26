@@ -158,12 +158,12 @@ Storyblok's richtext field also let's you insert content blocks. To render these
 ```ruby
 # Option 1: Define the resolver when initializing
 client = Storyblok::Client.new(
-  component_resolver: ->(component, data) => {
+  component_resolver: ->(component, data) {
     case component
     when 'button'
       "<button>#{data['text']}</button>"
     when 'your_custom_component'
-      "<div class="welcome">#{data['welcome_text']}</div>"
+      "<div class='welcome'>#{data['welcome_text']}</div>"
     end
   }
 )
@@ -183,6 +183,32 @@ gem build storyblok.gemspec
 gem push storyblok-2.0.X.gem
 ~~~
 
+### Running Tests
+We use [RSpec](http://rspec.info/) for testing.
+
+#### To run the whole test suite you will need export the environment variables, ATTENTION when running the test suit with the variable `REDIS_URL` exported, the test suite will remove the keys with this pattern `storyblok:*` from the redis database defined by `REDIS_URL`
+
+```bash
+export REDIS_URL="redis://localhost:6379"
+```
+
+Optionally you can generate the test report coverage by setting the environment variable
+
+```bash
+export COVERAGE=true
+```
+
+To run the whole test suite use the following command:
+
+```bash
+rspec
+```
+
+To run tests without redis cache tests (for when you don't have redis, or to avoid the test suite to remove the keys with this pattern `storyblok:*` ):
+
+```bash
+rspec --tag ~redis_cache:true
+```
 
 ### License
 

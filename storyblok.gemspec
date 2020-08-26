@@ -20,4 +20,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'bundler', '~> 1.5'
   gem.add_development_dependency 'rspec', '~> 3'
+  gem.add_development_dependency 'webmock'
+  gem.add_development_dependency 'vcr'
+  gem.add_development_dependency 'simplecov'
 end

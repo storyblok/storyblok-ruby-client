@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/stories/simple_content?cv=1597961320&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '690'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=604800, max-age=0
+      Date:
+      - Thu, 20 Aug 2020 22:08:44 GMT
+      Etag:
+      - W/"ff7c298ed13bc21b7034e982273c6449"
+      Link:
+      - ''
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - e4b5cee6-abf6-4809-94f7-9f99a1e393fe
+      X-Runtime:
+      - '0.031388'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 0f850e31038aee6c89c819ab24d8d466.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GIG51-C1
+      X-Amz-Cf-Id:
+      - M4X_SuWPNl52nHlbLDPzc2NToTL_7pQNVpJARaI6x246LBoj5B-mgA==
+    body:
+      encoding: UTF-8
+      string: '{"story":{"name":"simple_content","created_at":"2020-08-20T18:01:55.065Z","published_at":"2020-08-20T18:13:34.946Z","alternates":[],"id":18409805,"uuid":"fe520269-b092-482c-94c4-8028eb81af41","content":{"_uid":"ae111a76-84b7-43cc-a6a0-77a70de1b6f4","component":"SimpleTextContentType","SimpleText":"Simple
+        Content from a Simple Text PUBLISHED"},"slug":"simple_content","full_slug":"simple_content","default_full_slug":null,"sort_by_date":null,"position":0,"tag_list":[],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.759Z","release_id":null,"lang":"default","path":null,"translated_slugs":[]}}'
+  recorded_at: Thu, 20 Aug 2020 22:08:44 GMT
+recorded_with: VCR 6.0.0

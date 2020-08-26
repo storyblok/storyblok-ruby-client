@@ -1,0 +1,245 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:11:32 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 9a1de6ab-b2d7-49c6-8254-3f30c8612089
+      X-Runtime:
+      - '0.095350'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 fde77bc593637d1899bb4f1a15b66f65.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - II-o9A3ATQE9ZN8e_YJXvJSybFg-Q8FnqtdLJ7tn75LlUjfoJNCycQ==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:11:33 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:19:30 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 3ebaf341-be9e-4bca-bb3b-b26697b2b27c
+      X-Runtime:
+      - '0.078177'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6292492b9173a9047f34761cae98e352.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - W3k8DhqpdPDAnpvgbS03filk-vRXDILd4m3mEYCjRb_PQtv5550ClA==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:19:30 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 429
+      message: null
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:20:24 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 8344928f-ad47-478a-8d9b-8c36bda46a25
+      X-Runtime:
+      - '0.094251'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 c2a1aac15637d2cb0af9489335f9cddb.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - TC1Wd7DDla82BhZtkBT0z4jCYEtzjfl0TlQaa2NztI-d9ctaISsSNQ==
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 25 Aug 2020 19:20:24 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/spaces
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Authorization:
+      - <MY_PERSONAL_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '331'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Date:
+      - Tue, 25 Aug 2020 19:22:43 GMT
+      Etag:
+      - W/"be76a2686cf48e89fe11bbb519083615"
+      Server:
+      - nginx/1.12.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - dcacf948-58ba-41fc-bf34-35f4966ddad0
+      X-Runtime:
+      - '0.126332'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 b87b6be4a9421126859b29704feaec64.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - G8p8hKlIShkTAYAoAN3g3gvXw-lBVF8xbvxTkJ7tL7-hEee_f__oIw==
+    body:
+      encoding: UTF-8
+      string: '{"spaces":[{"name":"Clean Space","id":91322,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"blog_space","id":91112,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"My
+        beta Space","id":88422,"euid":"","owner_id":"<OWNER_ID_INTEGER>"},{"name":"My new Space","id":86092,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"},{"name":"Your
+        demo space","id":85563,"euid":null,"owner_id":"<OWNER_ID_INTEGER>"}]}'
+  recorded_at: Tue, 25 Aug 2020 19:22:43 GMT
+recorded_with: VCR 6.0.0

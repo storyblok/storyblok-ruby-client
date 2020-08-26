@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/datasource_entries?cv=1597960900&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.1p33
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '164'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, s-maxage=604800, max-age=0
+      Date:
+      - Thu, 20 Aug 2020 22:01:46 GMT
+      Etag:
+      - W/"22d8a03a7021f4dfb5b655f0f4f0dfc1"
+      Per-Page:
+      - '25'
+      Server:
+      - nginx/1.12.1
+      Total:
+      - '2'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 0a8edb4d-b79a-4486-b028-2ce60f5c136f
+      X-Runtime:
+      - '0.090569'
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 02fe6e236b00f4dcbdb1bf5c172062d9.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GIG51-C1
+      X-Amz-Cf-Id:
+      - qPTY1SuDa4qrqhKHVXj6A6fPGbI6ujo7hovZ6DqOXMlMfipZGIlgfw==
+    body:
+      encoding: UTF-8
+      string: '{"datasource_entries":[{"id":404023,"name":"key_1","value":"value_1","dimension_value":null},{"id":404024,"name":"key_2","value":"value_2","dimension_value":null}]}'
+  recorded_at: Thu, 20 Aug 2020 22:01:46 GMT
+recorded_with: VCR 6.0.0
