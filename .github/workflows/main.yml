@@ -25,9 +25,6 @@ jobs:
       with:
         ruby-version: '2.6'
 
-    - name: GitHub Environment Variables Action
-      uses: FranzDiebold/github-env-vars-action@v1.2.0
-
     # Runs a single command using the runners shell
     - name: Install development/test dependencies
       run: |
@@ -38,12 +35,6 @@ jobs:
         curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         chmod +x ./cc-test-reporter
         ./cc-test-reporter -d before-build
-        pwd
-        echo $GITHUB_REF
-        echo running on branch ${GITHUB_REF##*/}
-        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        echo "::set-env name={GIT_BRANCH}::{git rev-parse --abbrev-ref HEAD}"
-        echo $GIT_BRANCH
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
