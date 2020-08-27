@@ -1,7 +1,6 @@
-# Storyblok ruby API Client
 [![Maintainability](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/maintainability)](https://codeclimate.com/github/storyblok/storyblok-ruby/maintainability)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/test_coverage)](https://codeclimate.com/github/storyblok/storyblok-ruby/test_coverage)
+[![Inline docs](https://inch-ci.org/github/storyblok/storyblok-ruby.svg?branch=master)](https://www.rubydoc.info/gems/storyblok)
 
 # About
 This is the Storyblok ruby client for easy access of the management and content delivery api.
