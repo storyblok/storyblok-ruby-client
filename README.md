@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/maintainability)](https://codeclimate.com/github/storyblok/storyblok-ruby/maintainability)
 
 # About
-This is the Storyblok ruby client for easy access of the management and content delivery api.
+This is the official [Storyblok](https://www.storyblok.com/) ruby client for easy access of the management and content delivery api.
 
 ## Install
 
