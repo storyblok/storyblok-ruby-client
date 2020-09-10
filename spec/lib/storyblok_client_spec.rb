@@ -580,7 +580,7 @@ describe Storyblok::Client do
           expect{ subject.tags }.to change{ redis_client.keys("storyblok:*").size }.from(0).to(2) # stores cache and cache_version
 
           expect(subject.tags['data']).to eq(tags_response_expected)
-          response_cached = redis_client.get(redis_client.keys("storyblok:*").first)
+          response_cached = redis_client.get(redis_client.keys("storyblok:<SPACE_PUBLIC_TOKEN>:v:*").first)
           expect(JSON.parse(response_cached)['data']).to eq(tags_response_expected)
         end
 

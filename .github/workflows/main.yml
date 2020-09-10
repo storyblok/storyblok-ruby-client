@@ -1,0 +1,65 @@
+# This is a github workflow file made to use github Actions
+
+name: RSpec Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      REDIS_URL: redis://localhost:6379
+      COVERAGE: true
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.1.0
+      with:
+        redis-version: 4
+
+    - name: Cache Test Reporter dependency
+      id: cache-binary-test-reporter
+      uses: actions/cache@v2
+      with:
+        path: cc-test-reporter
+        key: ${{ runner.os }}-binary-test-reporter
+
+    - name: Download the test binary reporter from CodeClimate
+      if: steps.cache-binary-test-reporter.outputs.cache-hit != 'true'
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+
+    - name: setup Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.6'
+
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Bundle Install
+      run: |
+        gem install bundler:1.17.2 -N
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+
+    - name: Reporter setup
+      run: ./cc-test-reporter -d before-build
+
+    - name: Run Rspec
+      run: bundle exec rspec
+
+    - name: Send coverage report
+      run: ./cc-test-reporter -d after-build -t simplecov

@@ -1,5 +1,11 @@
+[![Test Coverage](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/test_coverage)](https://codeclimate.com/github/storyblok/storyblok-ruby/test_coverage)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/storyblok/storyblok-ruby/RSpec%20Tests/master)
+[![Ruby Gems Downloads](https://img.shields.io/gem/dt/storyblok)](https://rubygems.org/gems/storyblok)
+[![Inline docs](https://inch-ci.org/github/storyblok/storyblok-ruby.svg?branch=master)](https://www.rubydoc.info/gems/storyblok)
+[![Maintainability](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/maintainability)](https://codeclimate.com/github/storyblok/storyblok-ruby/maintainability)
+
 # About
-This is the Storyblok ruby client for easy access of the management and content delivery api.
+This is the official [Storyblok](https://www.storyblok.com/) ruby client for easy access of the management and content delivery api.
 
 ## Install
 
