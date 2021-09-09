@@ -126,7 +126,7 @@ client.flush
 client = Storyblok::Client.new(oauth_token: 'YOUR_OAUTH_TOKEN')
 
 # Get your spaces
-client.get('spaces')
+client.get('spaces/')
 ```
 
 ### Create a story
