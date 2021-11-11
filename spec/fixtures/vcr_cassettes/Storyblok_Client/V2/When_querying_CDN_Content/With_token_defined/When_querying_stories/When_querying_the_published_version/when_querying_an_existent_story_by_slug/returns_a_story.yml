@@ -1,0 +1,132 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v2/cdn/stories/simple_content?cv=0&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '192'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 11 Nov 2021 20:16:56 GMT
+      Server:
+      - nginx/1.18.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Location:
+      - https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&token=<SPACE_PUBLIC_TOKEN>&version=published
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 215971b9-9d17-4f1f-93c9-7aac2ec377d7
+      X-Runtime:
+      - '0.015426'
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 bd4ad926a3895386fc9d8fdad3e80a4a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - KV8m2aWlVrnKgUeLwFk1PuwMrOwxXe9myHPz0khyYbwAw_qcJqBt2Q==
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&amp;token=<SPACE_PUBLIC_TOKEN>&amp;version=published">redirected</a>.</body></html>
+  recorded_at: Thu, 11 Nov 2021 20:16:56 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '760'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 11 Nov 2021 20:16:57 GMT
+      Server:
+      - nginx/1.18.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Cache-Control:
+      - max-age=0, public, s-maxage=604800
+      Etag:
+      - W/"1f702acccd5633995dc20c845a31f170"
+      X-Request-Id:
+      - e2e08b2b-62cc-4250-a8e5-9669a5ab3c39
+      X-Runtime:
+      - '0.054844'
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 7196a3190f952f513b9c68ab97d73f43.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU50-C1
+      X-Amz-Cf-Id:
+      - HaAnexSJW7VoB7AXnyVeKovf1w0JCm-328FSlznLxOCyoMxaNFVLwQ==
+    body:
+      encoding: UTF-8
+      string: '{"story":{"name":"simple_content","created_at":"2020-08-20T18:01:55.065Z","published_at":"2021-11-11T20:16:01.847Z","id":18409805,"uuid":"fe520269-b092-482c-94c4-8028eb81af41","content":{"_uid":"ae111a76-84b7-43cc-a6a0-77a70de1b6f4","component":"SimpleTextContentType","SimpleText":"Simple
+        Content from a Simple Text PUBLISHED VERSION"},"slug":"simple_content","full_slug":"simple_content","sort_by_date":null,"position":0,"tag_list":["tag_out_of_any_folder"],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.000Z","release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null},"cv":1636661769,"rels":[],"links":[]}'
+  recorded_at: Thu, 11 Nov 2021 20:16:57 GMT
+recorded_with: VCR 6.0.0
