@@ -12,7 +12,7 @@ module Storyblok
     DEFAULT_CONFIGURATION = {
       secure: true,
       api_url: 'api.storyblok.com',
-      api_version: 1,
+      api_version: 2,
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',

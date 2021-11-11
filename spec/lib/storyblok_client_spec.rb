@@ -4,7 +4,7 @@ require 'redis'
 require 'spec_helper'
 
 describe Storyblok::Client do
-  subject { described_class.new(token: token, version: version) }
+  subject { described_class.new(api_version: 1, token: token, version: version) }
 
   context "When querying CDN Content" do
 
@@ -119,7 +119,7 @@ describe Storyblok::Client do
         end
 
         context "When querying the draft version" do
-          subject { described_class.new(token: token) }
+          subject { described_class.new(api_version: 1, token: token) }
 
           let(:token) { '<SPACE_PREVIEW_TOKEN>' }
 
@@ -534,7 +534,7 @@ describe Storyblok::Client do
         }
 
         context "When setting a renderer at client initialization" do
-          subject { described_class.new(token: token, version: version, component_resolver: component_resolver) }
+          subject { described_class.new(api_version: 1, token: token, version: version, component_resolver: component_resolver) }
           let(:component_resolver) { ->(component, data) { "Placeholder for #{component}: #{data['text']}" } }
 
           it "returns data rendered with component_resolver" do
@@ -543,7 +543,7 @@ describe Storyblok::Client do
         end
 
         context "When setting a renderer after client initialization" do
-          subject { described_class.new(token: token, version: version) }
+          subject { described_class.new(api_version: 1,  token: token, version: version) }
           let(:component_resolver) { ->(component, data) { "Placeholder for #{component}: #{data['text']}" } }
 
           it "set renderer and returns data rendered with component_resolver" do
@@ -554,7 +554,7 @@ describe Storyblok::Client do
       end
 
       context "When caching is enabled", redis_cache: true do
-        subject { described_class.new(token: token, version: version, cache: cache) }
+        subject { described_class.new(api_version: 1,  token: token, version: version, cache: cache) }
         before { redis_client.keys("storyblok:*").each { |e| redis_client.del(e) } }
         let(:redis_client) {
           raise StandardError, "Environment variable 'REDIS_URL' is not defined" if ENV['REDIS_URL'].nil?
@@ -601,7 +601,7 @@ describe Storyblok::Client do
   context "When Managing the Space" do
     context "With oauth_token defined" do
       let(:oauth_token) { '<MY_PERSONAL_ACCESS_TOKEN>' }
-      subject { described_class.new(oauth_token: oauth_token) }
+      subject { described_class.new(api_version: 1, oauth_token: oauth_token) }
 
       context "When performing a GET request" do
         context "Listing spaces" do
