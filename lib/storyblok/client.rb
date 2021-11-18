@@ -188,7 +188,63 @@ module Storyblok
         end
       end
 
-      JSON.parse(result)
+      result = JSON.parse(result)
+
+      if !result.dig('data', 'story').nil? || !result.dig('data', 'stories').nil?
+        result = resolve_stories(result, query)
+      end
+
+      result
+    end
+
+    def resolve_stories(result, params)
+      data = result['data']
+      rels = data['rels']
+
+      return result if params[:resolve_relations].nil? || (rels.nil? || rels.size.zero?)
+
+      rels_copy = rels.clone
+
+      if data['stories'].nil?
+        find_and_fill_relation(data['story']['content'], params[:resolve_relations], rels_copy)
+      else
+        data['stories'].each do |story|
+          find_and_fill_relation(story['content'], params[:resolve_relations], rels_copy)
+        end
+      end
+
+      result
+    end
+
+    def find_and_fill_relation(content, relation_params, rels)
+      return if content.nil?
+
+      return if rels.nil? || rels.size.zero?
+
+      if content.is_a? Array
+        content.each do |item|
+          find_and_fill_relation(item, relation_params, rels)
+        end
+      elsif content.is_a? Hash
+        content.each do |key, value|
+          if !content['component'].nil? && !content['_uid'].nil?
+            relation_params.split(',').each do |relation|
+              component, field_name = relation.split('.')
+
+              if (content['component'] == component) && !content[field_name].nil?
+                rels.each do |rel|
+                  index = content[field_name].index(rel['uuid'])
+                  if !index.nil?
+                    content[field_name][index] = rel
+                  end
+                end
+              end
+            end
+          end
+
+          find_and_fill_relation(value, relation_params, rels)
+        end
+      end
     end
 
     def flush

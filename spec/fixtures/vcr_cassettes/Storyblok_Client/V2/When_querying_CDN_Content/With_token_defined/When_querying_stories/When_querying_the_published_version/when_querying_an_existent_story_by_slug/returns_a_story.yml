@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Thu, 11 Nov 2021 20:16:56 GMT
+      - Thu, 18 Nov 2021 14:48:29 GMT
       Server:
       - nginx/1.18.0
       X-Frame-Options:
@@ -43,30 +43,30 @@ http_interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Location:
-      - https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&token=<SPACE_PUBLIC_TOKEN>&version=published
+      - https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1637246408&token=<SPACE_PUBLIC_TOKEN>&version=published
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 215971b9-9d17-4f1f-93c9-7aac2ec377d7
+      - 65452726-7ab5-4404-b677-e2a66690cad5
       X-Runtime:
-      - '0.015426'
+      - '0.009850'
       Vary:
       - Origin
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 bd4ad926a3895386fc9d8fdad3e80a4a.cloudfront.net (CloudFront)
+      - 1.1 94e3ea0ab5975966bae06782503f9692.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - GRU50-C1
+      - GRU3-C2
       X-Amz-Cf-Id:
-      - KV8m2aWlVrnKgUeLwFk1PuwMrOwxXe9myHPz0khyYbwAw_qcJqBt2Q==
+      - V20yRs1ecxr2Y1IT1dUSjL9eq04jKTDGK-wxPEfXqxDT1gBeQv_cug==
     body:
       encoding: UTF-8
-      string: <html><body>You are being <a href="https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&amp;token=<SPACE_PUBLIC_TOKEN>&amp;version=published">redirected</a>.</body></html>
-  recorded_at: Thu, 11 Nov 2021 20:16:56 GMT
+      string: <html><body>You are being <a href="https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1637246408&amp;token=<SPACE_PUBLIC_TOKEN>&amp;version=published">redirected</a>.</body></html>
+  recorded_at: Thu, 18 Nov 2021 14:48:29 GMT
 - request:
     method: get
-    uri: https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1636661769&token=<SPACE_PUBLIC_TOKEN>&version=published
+    uri: https://api.storyblok.com/v2/cdn/stories/simple_content?cv=1637246408&token=<SPACE_PUBLIC_TOKEN>&version=published
     body:
       encoding: US-ASCII
       string: ''
@@ -91,7 +91,7 @@ http_interactions:
       Connection:
       - keep-alive
       Date:
-      - Thu, 11 Nov 2021 20:16:57 GMT
+      - Thu, 18 Nov 2021 14:48:30 GMT
       Server:
       - nginx/1.18.0
       X-Frame-Options:
@@ -109,24 +109,24 @@ http_interactions:
       Cache-Control:
       - max-age=0, public, s-maxage=604800
       Etag:
-      - W/"1f702acccd5633995dc20c845a31f170"
+      - W/"c3403cce7caf4700e774072cb0b8e98e"
       X-Request-Id:
-      - e2e08b2b-62cc-4250-a8e5-9669a5ab3c39
+      - 743a7d21-0d9d-4c5a-bdcc-4699fb356790
       X-Runtime:
-      - '0.054844'
+      - '0.031868'
       Vary:
       - Origin
       X-Cache:
       - Miss from cloudfront
       Via:
-      - 1.1 7196a3190f952f513b9c68ab97d73f43.cloudfront.net (CloudFront)
+      - 1.1 2268373f32ed46c458ef5057fc6f60f9.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - GRU50-C1
+      - GRU3-C2
       X-Amz-Cf-Id:
-      - HaAnexSJW7VoB7AXnyVeKovf1w0JCm-328FSlznLxOCyoMxaNFVLwQ==
+      - oRAlYrLEpFQ9laTrbEeVsk_hQsYtmoNp4xGtACNPBIG8CBJEbIUmmA==
     body:
       encoding: UTF-8
       string: '{"story":{"name":"simple_content","created_at":"2020-08-20T18:01:55.065Z","published_at":"2021-11-11T20:16:01.847Z","id":18409805,"uuid":"fe520269-b092-482c-94c4-8028eb81af41","content":{"_uid":"ae111a76-84b7-43cc-a6a0-77a70de1b6f4","component":"SimpleTextContentType","SimpleText":"Simple
-        Content from a Simple Text PUBLISHED VERSION"},"slug":"simple_content","full_slug":"simple_content","sort_by_date":null,"position":0,"tag_list":["tag_out_of_any_folder"],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.000Z","release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null},"cv":1636661769,"rels":[],"links":[]}'
-  recorded_at: Thu, 11 Nov 2021 20:16:57 GMT
+        Content from a Simple Text PUBLISHED VERSION"},"slug":"simple_content","full_slug":"simple_content","sort_by_date":null,"position":0,"tag_list":["tag_out_of_any_folder"],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.000Z","release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null},"cv":1637246408,"rels":[],"links":[]}'
+  recorded_at: Thu, 18 Nov 2021 14:48:30 GMT
 recorded_with: VCR 6.0.0
