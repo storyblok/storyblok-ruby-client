@@ -1,0 +1,134 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v2/cdn/stories/content-resolve-links?cv=0&resolve_links=1&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '219'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 18 Nov 2021 19:30:03 GMT
+      Server:
+      - nginx/1.18.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Location:
+      - https://api.storyblok.com/v2/cdn/stories/content-resolve-links?cv=1637263402&resolve_links=1&token=<SPACE_PUBLIC_TOKEN>&version=published
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - ac73b061-7715-4e92-a390-806bdaa459ec
+      X-Runtime:
+      - '0.009646'
+      Vary:
+      - Origin
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 556a8e472aa5f024ae12c26115193add.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - uyugTpycN7HlS6vh-cyvzU_03DFJ0bytCZ25I1IsD9DAqwZ0TiuWgw==
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://api.storyblok.com/v2/cdn/stories/content-resolve-links?cv=1637263402&amp;resolve_links=1&amp;token=<SPACE_PUBLIC_TOKEN>&amp;version=published">redirected</a>.</body></html>
+  recorded_at: Thu, 18 Nov 2021 19:30:03 GMT
+- request:
+    method: get
+    uri: https://api.storyblok.com/v2/cdn/stories/content-resolve-links?cv=1637263402&resolve_links=1&token=<SPACE_PUBLIC_TOKEN>&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 18 Nov 2021 19:24:13 GMT
+      Server:
+      - nginx/1.18.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Cache-Control:
+      - max-age=0, public, s-maxage=604800
+      Etag:
+      - W/"963a59ada9a9c8f2f3cb20e2c65500ba"
+      X-Request-Id:
+      - 9db09cd3-9853-4a84-91fe-95c093d26b60
+      X-Runtime:
+      - '0.039757'
+      Vary:
+      - Accept-Encoding,Origin
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 d0fa3f8822fe8be866cc48a3d5872b93.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - "-o6sHBFhItFBku3ACGYV3xPEuRw48AExtbXceHG2U06sqyE2s_cNyQ=="
+      Age:
+      - '350'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"story":{"name":"content resolve links","created_at":"2021-11-18T17:43:08.695Z","published_at":"2021-11-18T19:23:22.657Z","id":86436757,"uuid":"e93f2707-775c-41d4-8ad5-413975318d93","content":{"_uid":"d8e13705-ddf8-4f4f-8432-d3baece5ec23","body":[],"component":"page","link_to_story":{"id":"fe520269-b092-482c-94c4-8028eb81af41","url":"","anchor":"","linktype":"story","fieldtype":"multilink","cached_url":"simple_content"},"link_to_story_2":{"id":"","url":"","linktype":"url","fieldtype":"multilink","cached_url":""}},"slug":"content-resolve-links","full_slug":"content-resolve-links","sort_by_date":null,"position":-110,"tag_list":[],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"7f03b8db-6237-48b4-abd7-6bc8a0f459c8","first_published_at":"2021-11-18T17:51:19.000Z","release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null},"cv":1637263402,"rels":[],"links":[{"name":"simple_content","created_at":"2020-08-20T18:01:55.065Z","published_at":"2021-11-11T20:16:01.847Z","id":18409805,"uuid":"fe520269-b092-482c-94c4-8028eb81af41","content":{"_uid":"ae111a76-84b7-43cc-a6a0-77a70de1b6f4","component":"SimpleTextContentType","SimpleText":"Simple
+        Content from a Simple Text PUBLISHED VERSION"},"slug":"simple_content","full_slug":"simple_content","sort_by_date":null,"position":0,"tag_list":["tag_out_of_any_folder"],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"f905f0f0-569e-4036-bcef-1479e5088956","first_published_at":"2020-08-20T18:03:33.000Z","release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null}]}'
+  recorded_at: Thu, 18 Nov 2021 19:30:03 GMT
+recorded_with: VCR 6.0.0

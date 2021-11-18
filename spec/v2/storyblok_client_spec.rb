@@ -161,6 +161,120 @@ describe Storyblok::Client do
                 end
               end
 
+              context "using resolve_links", :vcr do
+                it "returns a story with links resolved" do
+                  expect(subject.story('content-resolve-links', resolve_links: 1)['data']).to eq({
+                    "story"=> {
+                      "name"=> "content resolve links",
+                      "created_at"=> "2021-11-18T17:43:08.695Z",
+                      "published_at"=> "2021-11-18T19:23:22.657Z",
+                      "id"=> 86436757,
+                      "uuid"=> "e93f2707-775c-41d4-8ad5-413975318d93",
+                      "content"=> {
+                        "_uid"=> "d8e13705-ddf8-4f4f-8432-d3baece5ec23",
+                        "body"=> [],
+                        "component"=> "page",
+                        "link_to_story"=> {
+                          "id"=> "fe520269-b092-482c-94c4-8028eb81af41",
+                          "url"=> "",
+                          "anchor"=> "",
+                          "linktype"=> "story",
+                          "fieldtype"=> "multilink",
+                          "cached_url"=> "simple_content",
+                          "story"=> {
+                            "name"=> "simple_content",
+                            "created_at"=> "2020-08-20T18:01:55.065Z",
+                            "published_at"=> "2021-11-11T20:16:01.847Z",
+                            "id"=> 18409805,
+                            "uuid"=> "fe520269-b092-482c-94c4-8028eb81af41",
+                            "content"=> {
+                              "_uid"=> "ae111a76-84b7-43cc-a6a0-77a70de1b6f4",
+                              "component"=> "SimpleTextContentType",
+                              "SimpleText"=> "Simple Content from a Simple Text PUBLISHED VERSION"
+                            },
+                            "slug"=> "simple_content",
+                            "full_slug"=> "simple_content",
+                            "sort_by_date"=> nil,
+                            "position"=> 0,
+                            "tag_list"=> [
+                              "tag_out_of_any_folder"
+                            ],
+                            "is_startpage"=> false,
+                            "parent_id"=> 0,
+                            "meta_data"=> nil,
+                            "group_id"=> "f905f0f0-569e-4036-bcef-1479e5088956",
+                            "first_published_at"=> "2020-08-20T18:03:33.000Z",
+                            "release_id"=> nil,
+                            "lang"=> "default",
+                            "path"=> nil,
+                            "alternates"=> [],
+                            "default_full_slug"=> nil,
+                            "translated_slugs"=> nil
+                          }
+                        },
+                        "link_to_story_2"=> {
+                          "id"=> "",
+                          "url"=> "",
+                          "linktype"=> "url",
+                          "fieldtype"=> "multilink",
+                          "cached_url"=> ""
+                        }
+                      },
+                      "slug"=> "content-resolve-links",
+                      "full_slug"=> "content-resolve-links",
+                      "sort_by_date"=> nil,
+                      "position"=> -110,
+                      "tag_list"=> [],
+                      "is_startpage"=> false,
+                      "parent_id"=> 0,
+                      "meta_data"=> nil,
+                      "group_id"=> "7f03b8db-6237-48b4-abd7-6bc8a0f459c8",
+                      "first_published_at"=> "2021-11-18T17:51:19.000Z",
+                      "release_id"=> nil,
+                      "lang"=> "default",
+                      "path"=> nil,
+                      "alternates"=> [],
+                      "default_full_slug"=> nil,
+                      "translated_slugs"=> nil
+                    },
+                    "cv"=> 1637263402,
+                    "rels"=> [],
+                    "links"=> [
+                      {
+                        "name"=> "simple_content",
+                        "created_at"=> "2020-08-20T18:01:55.065Z",
+                        "published_at"=> "2021-11-11T20:16:01.847Z",
+                        "id"=> 18409805,
+                        "uuid"=> "fe520269-b092-482c-94c4-8028eb81af41",
+                        "content"=> {
+                          "_uid"=> "ae111a76-84b7-43cc-a6a0-77a70de1b6f4",
+                          "component"=> "SimpleTextContentType",
+                          "SimpleText"=> "Simple Content from a Simple Text PUBLISHED VERSION"
+                        },
+                        "slug"=> "simple_content",
+                        "full_slug"=> "simple_content",
+                        "sort_by_date"=> nil,
+                        "position"=> 0,
+                        "tag_list"=> [
+                          "tag_out_of_any_folder"
+                        ],
+                        "is_startpage"=> false,
+                        "parent_id"=> 0,
+                        "meta_data"=> nil,
+                        "group_id"=> "f905f0f0-569e-4036-bcef-1479e5088956",
+                        "first_published_at"=> "2020-08-20T18:03:33.000Z",
+                        "release_id"=> nil,
+                        "lang"=> "default",
+                        "path"=> nil,
+                        "alternates"=> [],
+                        "default_full_slug"=> nil,
+                        "translated_slugs"=> nil
+                      }
+                    ]
+                  })
+                end
+              end
+
               context "comparing v2 and v1", :vcr do
                 it "returns difference in translated_slug default value" do
                   v2_content = subject.story("content-resolve-relations", resolve_relations: "options-list.options", cv: 1)["data"]["story"]
