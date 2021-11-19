@@ -197,86 +197,6 @@ module Storyblok
       result
     end
 
-    def resolve_stories(result, params)
-      data = result['data']
-      rels = data['rels']
-      links = data['links']
-
-      if data['stories'].nil?
-        find_and_fill_relations(data['story']['content'], params[:resolve_relations], rels)
-        find_and_fill_links(data['story']['content'], links)
-      else
-        data['stories'].each do |story|
-          find_and_fill_relations(story['content'], params[:resolve_relations], rels)
-          find_and_fill_links(story['content'], links)
-        end
-      end
-
-      result
-    end
-
-    def find_and_fill_links(content, links)
-      return if content.nil? || links.nil? || links.size.zero?
-
-      if content.is_a? Array
-        content.each do |item|
-          find_and_fill_links(item, links)
-        end
-      elsif content.is_a? Hash
-        content['story'] = nil
-        content.each do |_k, value|
-          if !content['fieldtype'].nil?
-            if content['fieldtype'] == 'multilink' && content['linktype'] == 'story'
-              id =
-                if content['id'].is_a? String
-                  content['id']
-                elsif content['uuid'].is_a? String
-                  content['uuid']
-                end
-
-              links.each do |link|
-                if link['uuid'] == id
-                  content['story'] = link
-                  break
-                end
-              end
-            end
-          end
-
-          find_and_fill_links(value, links)
-        end
-        content.delete('story') if content['story'].nil?
-      end
-    end
-
-    def find_and_fill_relations(content, relation_params, rels)
-      return if content.nil? || rels.nil? || rels.size.zero?
-
-      if content.is_a? Array
-        content.each do |item|
-          find_and_fill_relations(item, relation_params, rels)
-        end
-      elsif content.is_a? Hash
-        content.each do |_k, value|
-          if !content['component'].nil? && !content['_uid'].nil?
-            relation_params.split(',').each do |relation|
-              component, field_name = relation.split('.')
-
-              if (content['component'] == component) && !content[field_name].nil?
-                rels.each do |rel|
-                  index = content[field_name].index(rel['uuid'])
-                  if !index.nil?
-                    content[field_name][index] = rel
-                  end
-                end
-              end
-            end
-          end
-
-          find_and_fill_relations(value, relation_params, rels)
-        end
-      end
-    end
 
     def flush
       unless cache.nil?
@@ -389,6 +309,87 @@ module Storyblok
       else
         raise ArgumentError, "value must be a Hash" if prefix.nil?
         "#{prefix}=#{URI.encode_www_form_component(value)}"
+      end
+    end
+
+    def resolve_stories(result, params)
+      data = result['data']
+      rels = data['rels']
+      links = data['links']
+
+      if data['stories'].nil?
+        find_and_fill_relations(data.dig('story', 'content'), params[:resolve_relations], rels)
+        find_and_fill_links(data.dig('story', 'content'), links)
+      else
+        data['stories'].each do |story|
+          find_and_fill_relations(story['content'], params[:resolve_relations], rels)
+          find_and_fill_links(story['content'], links)
+        end
+      end
+
+      result
+    end
+
+    def find_and_fill_links(content, links)
+      return if content.nil? || links.nil? || links.size.zero?
+
+      if content.is_a? Array
+        content.each do |item|
+          find_and_fill_links(item, links)
+        end
+      elsif content.is_a? Hash
+        content['story'] = nil
+        content.each do |_k, value|
+          if !content['fieldtype'].nil?
+            if content['fieldtype'] == 'multilink' && content['linktype'] == 'story'
+              id =
+                if content['id'].is_a? String
+                  content['id']
+                elsif content['uuid'].is_a? String
+                  content['uuid']
+                end
+
+              links.each do |link|
+                if link['uuid'] == id
+                  content['story'] = link
+                  break
+                end
+              end
+            end
+          end
+
+          find_and_fill_links(value, links)
+        end
+        content.delete('story') if content['story'].nil?
+      end
+    end
+
+    def find_and_fill_relations(content, relation_params, rels)
+      return if content.nil? || rels.nil? || rels.size.zero?
+
+      if content.is_a? Array
+        content.each do |item|
+          find_and_fill_relations(item, relation_params, rels)
+        end
+      elsif content.is_a? Hash
+        content.each do |_k, value|
+          if !content['component'].nil? && !content['_uid'].nil?
+            relation_params.split(',').each do |relation|
+              component, field_name = relation.split('.')
+
+              if (content['component'] == component) && !content[field_name].nil?
+                rels.each do |rel|
+                  index = content[field_name].index(rel['uuid'])
+                  if !index.nil?
+                    content[field_name][index] = rel
+                  end
+                end
+              end
+            end
+          end
+
+          find_and_fill_relations(value, relation_params, rels)
+        end
       end
     end
   end
