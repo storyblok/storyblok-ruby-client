@@ -275,7 +275,7 @@ describe Storyblok::Client do
                 end
               end
 
-              context "comparing v2 and v1", :vcr do
+              context "comparing v2 and v1 to assure backward compatibility", :vcr do
                 it "returns difference in translated_slug default value" do
                   v2_content = subject.story("content-resolve-relations", resolve_relations: "options-list.options", cv: 1)["data"]["story"]
                   v1_content = subject_v1.story("content-resolve-relations", resolve_relations: "options-list.options", cv: 1)["data"]["story"]

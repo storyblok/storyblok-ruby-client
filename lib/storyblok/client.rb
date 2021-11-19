@@ -203,11 +203,11 @@ module Storyblok
       links = data['links']
 
       if data['stories'].nil?
-        find_and_fill_relation(data['story']['content'], params[:resolve_relations], rels)
+        find_and_fill_relations(data['story']['content'], params[:resolve_relations], rels)
         find_and_fill_links(data['story']['content'], links)
       else
         data['stories'].each do |story|
-          find_and_fill_relation(story['content'], params[:resolve_relations], rels)
+          find_and_fill_relations(story['content'], params[:resolve_relations], rels)
           find_and_fill_links(story['content'], links)
         end
       end
@@ -249,12 +249,12 @@ module Storyblok
       end
     end
 
-    def find_and_fill_relation(content, relation_params, rels)
+    def find_and_fill_relations(content, relation_params, rels)
       return if content.nil? || rels.nil? || rels.size.zero?
 
       if content.is_a? Array
         content.each do |item|
-          find_and_fill_relation(item, relation_params, rels)
+          find_and_fill_relations(item, relation_params, rels)
         end
       elsif content.is_a? Hash
         content.each do |_k, value|
@@ -273,7 +273,7 @@ module Storyblok
             end
           end
 
-          find_and_fill_relation(value, relation_params, rels)
+          find_and_fill_relations(value, relation_params, rels)
         end
       end
     end
