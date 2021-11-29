@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.storyblok.com/v1/cdn/stories/content-resolve-relations?cv=0&resolve_relations=options-list.options&token=%3CSPACE_PUBLIC_TOKEN%3E&version=published
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.storyblok.com
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '24'
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 18 Nov 2021 14:04:37 GMT
+      Server:
+      - nginx/1.18.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Cache-Control:
+      - max-age=0, public, s-maxage=604800
+      X-Request-Id:
+      - f1f4ffa1-32d1-4f99-8f83-baa41af37b8a
+      X-Runtime:
+      - '0.007260'
+      Vary:
+      - Origin
+      X-Cache:
+      - Error from cloudfront
+      Via:
+      - 1.1 94e3ea0ab5975966bae06782503f9692.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - 4YCjKXygtU_7HlTSq0Hueuq2vCMsy02Y8t8jLBVqKcycyJAP3ELrcA==
+    body:
+      encoding: UTF-8
+      string: '{"error":"Unauthorized"}'
+  recorded_at: Thu, 18 Nov 2021 14:04:37 GMT
+recorded_with: VCR 6.0.0
