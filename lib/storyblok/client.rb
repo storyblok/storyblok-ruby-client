@@ -316,13 +316,14 @@ module Storyblok
       data = result['data']
       rels = data['rels']
       links = data['links']
+      resolve_relations = params[:resolve_relations] || params["resolve_relations"]
 
       if data['stories'].nil?
-        find_and_fill_relations(data.dig('story', 'content'), params[:resolve_relations], rels)
+        find_and_fill_relations(data.dig('story', 'content'), resolve_relations, rels)
         find_and_fill_links(data.dig('story', 'content'), links)
       else
         data['stories'].each do |story|
-          find_and_fill_relations(story['content'], params[:resolve_relations], rels)
+          find_and_fill_relations(story['content'], resolve_relations, rels)
           find_and_fill_links(story['content'], links)
         end
       end
