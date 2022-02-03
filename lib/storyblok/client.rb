@@ -11,8 +11,9 @@ module Storyblok
   class Client
     DEFAULT_CONFIGURATION = {
       secure: true,
-      api_url: 'api.storyblok.com',
+      api_url: false,
       api_version: 2,
+      api_region: false,
       logger: false,
       log_level: Logger::INFO,
       version: 'draft',
@@ -32,6 +33,7 @@ module Storyblok
     # @option given_configuration [String] :api_url
     # @option given_configuration [Proc] :component_resolver
     # @option given_configuration [Number] :api_version
+    # @option given_configuration [String] :api_region
     # @option given_configuration [false, ::Logger] :logger
     # @option given_configuration [::Logger::DEBUG, ::Logger::INFO, ::Logger::WARN, ::Logger::ERROR] :log_level
     def initialize(given_configuration = {})
@@ -272,7 +274,11 @@ module Storyblok
 
     # Returns the base url for all of the client's requests
     def base_url
-      "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
+      if !configuration[:api_url]
+        "http#{configuration[:secure] ? 's' : ''}://api#{configuration[:api_region] ? "-#{configuration[:api_region]}" : '' }.storyblok.com/v#{configuration[:api_version]}"
+      else
+        "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
+      end
     end
 
     def default_configuration
@@ -290,7 +296,6 @@ module Storyblok
 
     def validate_configuration!
       fail ArgumentError, 'You will need to initialize a client with an :token or :oauth_token' if !configuration[:token] and !configuration[:oauth_token]
-      fail ArgumentError, 'The client configuration needs to contain an :api_url' if configuration[:api_url].empty?
       fail ArgumentError, 'The :api_version must be a positive number' unless configuration[:api_version].to_i >= 0
     end
 
