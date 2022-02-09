@@ -28,8 +28,10 @@ module Storyblok
     # @param [Hash] given_configuration
     # @option given_configuration [String] :token Required if oauth_token is not set
     # @option given_configuration [String] :oauth_token Required if token is not set
+    # @option given_configuration [String] :api_url
     # @option given_configuration [Proc] :component_resolver
     # @option given_configuration [Number] :api_version
+    # @option given_configuration [String] :api_region
     # @option given_configuration [false, ::Logger] :logger
     # @option given_configuration [::Logger::DEBUG, ::Logger::INFO, ::Logger::WARN, ::Logger::ERROR] :log_level
     def initialize(given_configuration = {})
