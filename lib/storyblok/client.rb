@@ -275,7 +275,8 @@ module Storyblok
     # Returns the base url for all of the client's requests
     def base_url
       if !configuration[:api_url]
-        "http#{configuration[:secure] ? 's' : ''}://api#{configuration[:api_region] ? "-#{configuration[:api_region]}" : '' }.storyblok.com/v#{configuration[:api_version]}"
+        region = configuration[:api_region] ? "-#{configuration[:api_region]}" : ""
+        "http#{configuration[:secure] ? 's' : ''}://api#{region}.storyblok.com/v#{configuration[:api_version]}"
       else
         "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
       end
