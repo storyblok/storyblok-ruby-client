@@ -10,9 +10,6 @@
   <a href="https://codeclimate.com/github/storyblok/storyblok-ruby/test_coverage">
     <img src="https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/test_coverage" alt="Test Coverage" />
   </a>
-  <a href="https://npmjs.com/package/storyblok-ruby" rel="nofollow">
-    <img src="https://img.shields.io/gem/dt/storyblok?style=appveyor&color=09b3af" alt="npm">
-  </a>
   <a href="https://discord.gg/jKrbAMz">
    <img src="https://img.shields.io/discord/700316478792138842?label=Join%20Our%20Discord%20Community&style=appveyor&logo=discord&color=09b3af">
    </a>
