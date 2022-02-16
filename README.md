@@ -238,7 +238,7 @@ rspec --tag ~redis_cache:true
 ## 🔗 Related Links
 
 * **[Storyblok & Ruby on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Aruby)**: Check all of our Ruby open source repos;
-* **[Storyblok & Ruby 5 minutes tutorial](https://www.storyblok.com/tp/ruby-on-rails-cms)**: will show you how you can use the API-based CMS Storyblok in combination with the Framework “Ruby on Rails”;
+* **[Storyblok & Ruby 5 minutes tutorial](https://www.storyblok.com/tp/ruby-on-rails-cms?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby)**: will show you how you can use the API-based CMS Storyblok in combination with the Framework “Ruby on Rails”;
 * **[Technology Hub](https://www.storyblok.com/technologies?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby)**: We prepared technology hubs so that you can find selected beginner tutorials, videos, boilerplates, and even cheatsheets all in one place;
 * **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
 
