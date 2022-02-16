@@ -1,19 +1,38 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/test_coverage)](https://codeclimate.com/github/storyblok/storyblok-ruby/test_coverage)
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/storyblok/storyblok-ruby/RSpec%20Tests/master)
-[![Ruby Gems Downloads](https://img.shields.io/gem/dt/storyblok)](https://rubygems.org/gems/storyblok)
-[![Inline docs](https://inch-ci.org/github/storyblok/storyblok-ruby.svg?branch=master)](https://www.rubydoc.info/gems/storyblok)
-[![Maintainability](https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/maintainability)](https://codeclimate.com/github/storyblok/storyblok-ruby/maintainability)
+<div align="center">
+	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby"  align="center">
+		<img  src="https://a.storyblok.com/f/88751/1776x360/95e296dafa/sb-ruby.png"  alt="Storyblok Logo">
+	</a>
+	<h1 align="center">Storyblok Ruby Client</h1>
+	<p align="center">This is the official <a href="http://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby" target="_blank">Storyblok</a> ruby client for easy access of the management and content delivery api.</p>
+</div>
 
-# About
-This is the official [Storyblok](https://www.storyblok.com/) ruby client for easy access of the management and content delivery api.
+<p align="center">
+  <a href="https://codeclimate.com/github/storyblok/storyblok-ruby/test_coverage">
+    <img src="https://api.codeclimate.com/v1/badges/76e7fcc8524d4fadeeee/test_coverage" alt="Test Coverage" />
+  </a>
+  <a href="https://npmjs.com/package/storyblok-ruby" rel="nofollow">
+    <img src="https://img.shields.io/gem/dt/storyblok?style=appveyor&color=09b3af" alt="npm">
+  </a>
+  <a href="https://discord.gg/jKrbAMz">
+   <img src="https://img.shields.io/discord/700316478792138842?label=Join%20Our%20Discord%20Community&style=appveyor&logo=discord&color=09b3af">
+   </a>
+  <a href="https://twitter.com/intent/follow?screen_name=storyblok">
+    <img src="https://img.shields.io/badge/Follow-%40storyblok-09b3af?style=appveyor&logo=twitter" alt="Follow @Storyblok" />
+  </a><br/>
+  <a href="https://app.storyblok.com/#!/signup?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby">
+    <img src="https://img.shields.io/badge/Try%20Storyblok-Free-09b3af?style=appveyor&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAHqADAAQAAAABAAAAHgAAAADpiRU/AAACRElEQVRIDWNgGGmAEd3D3Js3LPrP8D8WXZwSPiMjw6qvPoHhyGYwIXNAbGpbCjbzP0MYuj0YFqMroBV/wCxmIeSju64eDNzMBJUxvP/9i2Hnq5cM1devMnz984eQsQwETeRhYWHgIcJiXqC6VHlFBjUeXgav40cIWkz1oLYXFmGwFBImaDFBHyObcOzdW4aSq5eRhRiE2dgYlpuYoYSKJi8vw3GgWnyAJIs/AuPu4scPGObd/fqVQZ+PHy7+6udPOBsXgySLDfn5GRYYmaKYJcXBgWLpsx8/GPa8foWiBhuHJIsl2DkYQqWksZkDFgP5PObcKYYff//iVAOTIDlx/QPqRMb/YSYBaWlOToZIaVkGZmAZSQiQ5OPtwHwacuo4iplMQEu6tXUZMhSUGDiYmBjylFQYvv/7x9B04xqKOnQOyT5GN+Df//8M59ASXKyMHLoyDD5JPtbj42OYrm+EYgg70JfuYuIoYmLs7AwMjIzA+uY/zjAnyWJpDk6GOFnCvrn86SOwmsNtKciVFAc1ileBHFDC67lzG10Yg0+SjzF0ownsf/OaofvOLYaDQJoQIGix94ljv1gIZI8Pv38zPvj2lQWYf3HGKbpDCFp85v07NnRN1OBTPY6JdRSGxcCw2k6sZuLVMZ5AV4s1TozPnGGFKbz+/PE7IJsHmC//MDMyhXBw8e6FyRFLv3Z0/IKuFqvFyIqAzd1PwBzJw8jAGPfVx38JshwlbIygxmYY43/GQmpais0ODDHuzevLMARHBcgIAQAbOJHZW0/EyQAAAABJRU5ErkJggg==" alt="Follow @Storyblok" />
+  </a>
+</p>
 
-## Install
+## 🚀 Usage
+
+### Install
 
 ```bash
 gem 'storyblok'
 ```
 
-## Usage for the content delivery api
+### Usage for the content delivery api
 
 By default the client loads the "draft" version of the Story. Be sure to set the version to "published" to get the published content only.
 
@@ -25,7 +44,7 @@ Storyblok::Client.new(version: 'draft')
 Storyblok::Client.new(version: 'published')
 ```
 
-### Load a story
+#### Load a story
 
 ```ruby
 # Without cache
@@ -40,7 +59,7 @@ client = Storyblok::Client.new(cache: cache, token: 'YOUR_TOKEN')
 client.story('home')
 ```
 
-### Load a list of stories
+#### Load a list of stories
 
 ```ruby
 # Get all Stories that start with news
@@ -49,7 +68,7 @@ client.stories({
 })
 ```
 
-### Load a list of datasource entries
+#### Load a list of datasource entries
 
 ```ruby
 # Get all label datasource entries
@@ -59,7 +78,7 @@ client.datasource_entries({
 
 ```
 
-### Load a list of tags
+#### Load a list of tags
 
 ```ruby
 # Get all Tags that within the folder news
@@ -69,13 +88,13 @@ client.tags({
 
 ```
 
-### Load a list of links
+#### Load a list of links
 
 ```ruby
 client.links
 ```
 
-## Generate a navigation tree
+### Generate a navigation tree
 
 ```ruby
 tree = client.tree
@@ -97,13 +116,13 @@ end
 puts '</ul>'
 ```
 
-### Get the space info
+#### Get the space info
 
 ```ruby
 client.space
 ```
 
-## How to flush the cache
+### How to flush the cache
 
 Following an example of how to flush the client cache:
 
@@ -118,9 +137,9 @@ client.story('home')
 client.flush
 ```
 
-## Usage for the management api
+### Usage for the management api
 
-### Initialize the client and load spaces
+#### Initialize the client and load spaces
 
 ```ruby
 client = Storyblok::Client.new(oauth_token: 'YOUR_OAUTH_TOKEN')
@@ -129,35 +148,35 @@ client = Storyblok::Client.new(oauth_token: 'YOUR_OAUTH_TOKEN')
 client.get('spaces/')
 ```
 
-### Create a story
+#### Create a story
 
 ```ruby
 client.post("spaces/{space_id}/stories", {story: {name: 'new', slug: "new"}})
 ```
 
-### Update a story
+#### Update a story
 
 ```ruby
 client.put("spaces/{space_id}/stories/{story_id}", {story: {name: 'new', slug: "new"}})
 ```
 
-### Delete a story
+#### Delete a story
 
 ```ruby
 client.delete("spaces/{space_id}/stories/{story_id}")
 ```
 
-## Rendering of richtext fields
+### Rendering of richtext fields
 
 This SDK comes with a rendering service for richtext fields of Storyblok to get html output.
 
-### Rendering a richtext field
+#### Rendering a richtext field
 
 ```ruby
 client.render(data.richtext_field)
 ```
 
-### Define a component renderer
+#### Define a component renderer
 
 Storyblok's richtext field also let's you insert content blocks. To render these blocks you can define a Lambda.
 
@@ -180,7 +199,7 @@ client.set_component_resolver(->(component, data) {
 })
 ```
 
-### Contribute
+#### Contribute
 
 How to build a gem file.
 
@@ -189,10 +208,10 @@ gem build storyblok.gemspec
 gem push storyblok-2.0.X.gem
 ~~~
 
-### Running Tests
+#### Running Tests
 We use [RSpec](http://rspec.info/) for testing.
 
-#### To run the whole test suite you will need export the environment variables, ATTENTION when running the test suit with the variable `REDIS_URL` exported, the test suite will remove the keys with this pattern `storyblok:*` from the redis database defined by `REDIS_URL`
+###### To run the whole test suite you will need export the environment variables, ATTENTION when running the test suit with the variable `REDIS_URL` exported, the test suite will remove the keys with this pattern `storyblok:*` from the redis database defined by `REDIS_URL`
 
 ```bash
 export REDIS_URL="redis://localhost:6379"
@@ -216,6 +235,22 @@ To run tests without redis cache tests (for when you don't have redis, or to avo
 rspec --tag ~redis_cache:true
 ```
 
-### License
+## 🔗 Related Links
 
-This project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* **[Storyblok & Ruby on GitHub](https://github.com/search?q=org%3Astoryblok+topic%3Aruby)**: Check all of our Ruby open source repos;
+* **[Storyblok & Ruby 5 minutes tutorial](https://www.storyblok.com/tp/ruby-on-rails-cms)**: will show you how you can use the API-based CMS Storyblok in combination with the Framework “Ruby on Rails”;
+* **[Technology Hub](https://www.storyblok.com/technologies?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby)**: We prepared technology hubs so that you can find selected beginner tutorials, videos, boilerplates, and even cheatsheets all in one place;
+* **[Storyblok CLI](https://github.com/storyblok/storyblok)**: A simple CLI for scaffolding Storyblok projects and fieldtypes.
+
+## ℹ️ More Resources
+
+### Support
+
+* Bugs or Feature Requests? [Submit an issue](../../../issues/new);
+
+* Do you have questions about Storyblok or you need help? [Join our Discord Community](https://discord.gg/jKrbAMz).
+
+### Contributing
+
+Please see our [contributing guidelines](https://github.com/storyblok/.github/blob/master/contributing.md) and our [code of conduct](https://www.storyblok.com/trust-center#code-of-conduct?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby).
+This project use [semantic-release](https://semantic-release.gitbook.io/semantic-release/) for generate new versions by using commit messages and we use the Angular Convention to naming the commits. Check [this question](https://semantic-release.gitbook.io/semantic-release/support/faq#how-can-i-change-the-type-of-commits-that-trigger-a-release) about it in semantic-release FAQ.
