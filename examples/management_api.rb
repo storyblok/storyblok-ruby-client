@@ -14,14 +14,14 @@ spaces = client.get('spaces')['data']['spaces']
 space = spaces.first
 
 p client.get("spaces/#{space['id']}")['data']['space']
-story_res = client.post("spaces/#{space['id']}/stories", {story: {name: 'new', slug: "new"}})['data']
+story_res = client.post("spaces/#{space['id']}/stories", { story: { name: 'new', slug: "new" } })['data']
 
 10.times do |index|
   client.get("spaces/#{space['id']}/stories/#{story_res['story']['id']}")
   puts index
 end
 
-p client.put("spaces/#{space['id']}/stories/#{story_res['story']['id']}", {story: {name: 'new123'}})['data']
+p client.put("spaces/#{space['id']}/stories/#{story_res['story']['id']}", { story: { name: 'new123' } })['data']
 
 10.times do |index|
   client.story('new')
@@ -29,5 +29,3 @@ p client.put("spaces/#{space['id']}/stories/#{story_res['story']['id']}", {story
 end
 
 p client.delete("spaces/#{space['id']}/stories/#{story_res['story']['id']}")
-
-
