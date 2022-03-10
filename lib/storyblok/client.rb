@@ -41,8 +41,8 @@ module Storyblok
 
       if configuration[:oauth_token]
         @rest_client = RestClient::Resource.new(base_url, :headers => {
-          :authorization => configuration[:oauth_token]
-        })
+                                                  :authorization => configuration[:oauth_token]
+                                                })
       end
 
       @renderer = Richtext::HtmlRenderer.new
@@ -197,7 +197,6 @@ module Storyblok
       result
     end
 
-
     def flush
       unless cache.nil?
         cache.set('storyblok:' + configuration[:token] + ':version', space['data']['space']['version'])
@@ -223,175 +222,177 @@ module Storyblok
     end
 
     private
-
-    def parse_result(res)
-      {'headers' => res.headers, 'data' => JSON.parse(res.body)}
-    end
-
-    def run_request(endpoint, query_string)
-      logger.info(request: { endpoint: endpoint, query: query_string }) if logger
-
-      retries_left = 3
-
-      begin
-        res = RestClient.get "#{endpoint}?#{query_string}"
-      rescue RestClient::TooManyRequests
-        if retries_left != 0
-          retries_left -= 1
-          logger.info("Too many requests. Retry nr. #{(3 - retries_left).to_s} of max. 3 times.") if logger
-          sleep(0.5)
-          retry
-        end
-
-        raise
+      def parse_result(res)
+        { 'headers' => res.headers, 'data' => JSON.parse(res.body) }
       end
 
-      body = JSON.parse(res.body)
-      self.cache_version = body['cv'] if body['cv']
+      def run_request(endpoint, query_string)
+        logger.info(request: { endpoint: endpoint, query: query_string }) if logger
 
-      unless cache.nil?
-        cache.set('storyblok:' + configuration[:token] + ':version', cache_version)
-      end
+        retries_left = 3
 
-      {'headers' => res.headers, 'data' => body}.to_json
-    end
-
-    # Patches a query hash with the client configurations for queries
-    def request_query(query)
-      query[:token] = configuration[:token] if query[:token].nil?
-      query[:version] = configuration[:version] if query[:version].nil?
-
-      unless cache.nil?
-        query[:cv] = (cache.get('storyblok:' + configuration[:token] + ':version') or cache_version) if query[:cv].nil?
-      else
-        query[:cv] = cache_version if query[:cv].nil?
-      end
-
-      query
-    end
-
-    # Returns the base url for all of the client's requests
-    def base_url
-      "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
-    end
-
-    def default_configuration
-      DEFAULT_CONFIGURATION.dup
-    end
-
-    def cache
-      configuration[:cache]
-    end
-
-    def setup_logger
-      @logger = configuration[:logger]
-      logger.level = configuration[:log_level] if logger
-    end
-
-    def validate_configuration!
-      fail ArgumentError, 'You will need to initialize a client with an :token or :oauth_token' if !configuration[:token] and !configuration[:oauth_token]
-      fail ArgumentError, 'The client configuration needs to contain an :api_url' if configuration[:api_url].empty?
-      fail ArgumentError, 'The :api_version must be a positive number' unless configuration[:api_version].to_i >= 0
-    end
-
-    def build_nested_query(value, prefix = nil)
-      case value
-      when Array
-        value.map { |v|
-          build_nested_query(v, "#{prefix}[]")
-        }.join("&")
-      when Hash
-        value.map { |k, v|
-          build_nested_query(v, prefix ? "#{prefix}[#{URI.encode_www_form_component(k)}]" : URI.encode_www_form_component(k))
-        }.reject(&:empty?).join('&')
-      when nil
-        prefix
-      else
-        raise ArgumentError, "value must be a Hash" if prefix.nil?
-        "#{prefix}=#{URI.encode_www_form_component(value)}"
-      end
-    end
-
-    def resolve_stories(result, params)
-      data = result['data']
-      rels = data['rels']
-      links = data['links']
-      resolve_relations = params[:resolve_relations] || params["resolve_relations"]
-
-      if data['stories'].nil?
-        find_and_fill_relations(data.dig('story', 'content'), resolve_relations, rels)
-        find_and_fill_links(data.dig('story', 'content'), links)
-      else
-        data['stories'].each do |story|
-          find_and_fill_relations(story['content'], resolve_relations, rels)
-          find_and_fill_links(story['content'], links)
-        end
-      end
-
-      result
-    end
-
-    def find_and_fill_links(content, links)
-      return if content.nil? || links.nil? || links.size.zero?
-
-      if content.is_a? Array
-        content.each do |item|
-          find_and_fill_links(item, links)
-        end
-      elsif content.is_a? Hash
-        content['story'] = nil
-        content.each do |_k, value|
-          if !content['fieldtype'].nil?
-            if content['fieldtype'] == 'multilink' && content['linktype'] == 'story'
-              id =
-                if content['id'].is_a? String
-                  content['id']
-                elsif content['uuid'].is_a? String
-                  content['uuid']
-                end
-
-              links.each do |link|
-                if link['uuid'] == id
-                  content['story'] = link
-                  break
-                end
-              end
-            end
+        begin
+          res = RestClient.get "#{endpoint}?#{query_string}"
+        rescue RestClient::TooManyRequests
+          if retries_left != 0
+            retries_left -= 1
+            logger.info("Too many requests. Retry nr. #{(3 - retries_left).to_s} of max. 3 times.") if logger
+            sleep(0.5)
+            retry
           end
 
-          find_and_fill_links(value, links)
+          raise
         end
-        content.delete('story') if content['story'].nil?
+
+        body = JSON.parse(res.body)
+        self.cache_version = body['cv'] if body['cv']
+
+        unless cache.nil?
+          cache.set('storyblok:' + configuration[:token] + ':version', cache_version)
+        end
+
+        { 'headers' => res.headers, 'data' => body }.to_json
       end
-    end
 
-    def find_and_fill_relations(content, relation_params, rels)
-      return if content.nil? || rels.nil? || rels.size.zero?
+      # Patches a query hash with the client configurations for queries
+      def request_query(query)
+        query[:token] = configuration[:token] if query[:token].nil?
+        query[:version] = configuration[:version] if query[:version].nil?
 
-      if content.is_a? Array
-        content.each do |item|
-          find_and_fill_relations(item, relation_params, rels)
+        unless cache.nil?
+          query[:cv] = (cache.get('storyblok:' + configuration[:token] + ':version') or cache_version) if query[:cv].nil?
+        else
+          query[:cv] = cache_version if query[:cv].nil?
         end
-      elsif content.is_a? Hash
-        content.each do |_k, value|
-          if !content['component'].nil? && !content['_uid'].nil?
-            relation_params.split(',').each do |relation|
-              component, field_name = relation.split('.')
 
-              if (content['component'] == component) && !content[field_name].nil?
-                rels.each do |rel|
-                  index = content[field_name].index(rel['uuid'])
-                  if !index.nil?
-                    content[field_name][index] = rel
+        query
+      end
+
+      # Returns the base url for all of the client's requests
+      def base_url
+        "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
+      end
+
+      def default_configuration
+        DEFAULT_CONFIGURATION.dup
+      end
+
+      def cache
+        configuration[:cache]
+      end
+
+      def setup_logger
+        @logger = configuration[:logger]
+        logger.level = configuration[:log_level] if logger
+      end
+
+      def validate_configuration!
+        fail ArgumentError,
+             'You will need to initialize a client with an :token or :oauth_token' if !configuration[:token] and !configuration[:oauth_token]
+        fail ArgumentError, 'The client configuration needs to contain an :api_url' if configuration[:api_url].empty?
+        fail ArgumentError, 'The :api_version must be a positive number' unless configuration[:api_version].to_i >= 0
+      end
+
+      def build_nested_query(value, prefix = nil)
+        case value
+        when Array
+          value.map { |v|
+            build_nested_query(v, "#{prefix}[]")
+          }.join("&")
+        when Hash
+          value.map { |k, v|
+            build_nested_query(v,
+                               prefix ? "#{prefix}[#{URI.encode_www_form_component(k)}]" : URI.encode_www_form_component(k))
+          }.reject(&:empty?).join('&')
+        when nil
+          prefix
+        else
+          raise ArgumentError, "value must be a Hash" if prefix.nil?
+
+          "#{prefix}=#{URI.encode_www_form_component(value)}"
+        end
+      end
+
+      def resolve_stories(result, params)
+        data = result['data']
+        rels = data['rels']
+        links = data['links']
+        resolve_relations = params[:resolve_relations] || params["resolve_relations"]
+
+        if data['stories'].nil?
+          find_and_fill_relations(data.dig('story', 'content'), resolve_relations, rels)
+          find_and_fill_links(data.dig('story', 'content'), links)
+        else
+          data['stories'].each do |story|
+            find_and_fill_relations(story['content'], resolve_relations, rels)
+            find_and_fill_links(story['content'], links)
+          end
+        end
+
+        result
+      end
+
+      def find_and_fill_links(content, links)
+        return if content.nil? || links.nil? || links.size.zero?
+
+        if content.is_a? Array
+          content.each do |item|
+            find_and_fill_links(item, links)
+          end
+        elsif content.is_a? Hash
+          content['story'] = nil
+          content.each do |_k, value|
+            if !content['fieldtype'].nil?
+              if content['fieldtype'] == 'multilink' && content['linktype'] == 'story'
+                id =
+                  if content['id'].is_a? String
+                    content['id']
+                  elsif content['uuid'].is_a? String
+                    content['uuid']
+                  end
+
+                links.each do |link|
+                  if link['uuid'] == id
+                    content['story'] = link
+                    break
                   end
                 end
               end
             end
-          end
 
-          find_and_fill_relations(value, relation_params, rels)
+            find_and_fill_links(value, links)
+          end
+          content.delete('story') if content['story'].nil?
         end
       end
-    end
+
+      def find_and_fill_relations(content, relation_params, rels)
+        return if content.nil? || rels.nil? || rels.size.zero?
+
+        if content.is_a? Array
+          content.each do |item|
+            find_and_fill_relations(item, relation_params, rels)
+          end
+        elsif content.is_a? Hash
+          content.each do |_k, value|
+            if !content['component'].nil? && !content['_uid'].nil?
+              relation_params.split(',').each do |relation|
+                component, field_name = relation.split('.')
+
+                if (content['component'] == component) && !content[field_name].nil?
+                  rels.each do |rel|
+                    index = content[field_name].index(rel['uuid'])
+                    if !index.nil?
+                      content[field_name][index] = rel
+                    end
+                  end
+                end
+              end
+            end
+
+            find_and_fill_relations(value, relation_params, rels)
+          end
+        end
+      end
   end
 end

@@ -6,7 +6,7 @@ describe Storyblok::Request do
 
   let(:client) { 'fake_client' }
   let(:endpoint) { 'some.url.com' }
-  let(:query) { {my_key: 'my_value'} }
+  let(:query) { { my_key: 'my_value' } }
   let(:id) { 222 }
 
   context "#copy" do

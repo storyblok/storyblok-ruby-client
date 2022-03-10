@@ -1,0 +1,30 @@
+# Original file https://gist.githubusercontent.com/palkan/ee1d0247be2076e38020a9a6fbae68d5/raw/b5a0b74ac2f5e0023219b82e3d17ad6104df2b2f/.rubocop_strict.yml
+# Inherit from TODO here to make sure we enforce the rules below
+# (and TODO is ignored)
+inherit_mode:
+  merge:
+    - Exclude
+
+inherit_from:
+  - .rubocop_todo.yml
+
+Lint/Debugger: # don't leave binding.pry
+  Enabled: true
+  Exclude: []
+
+RSpec/Focus: # run ALL tests on CI
+  Enabled: true
+  Exclude: []
+
+Rails/Output: # Don't leave puts-debugging # https://stackoverflow.com/a/7316253/5001358
+  Enabled: true
+  Exclude: []
+
+Rails/FindEach: # each could badly affect the performance, use find_each
+  Enabled: true
+  Exclude: []
+
+Rails/UniqBeforePluck: # uniq.pluck and not pluck.uniq
+  Enabled: true
+  Exclude: []
+  
