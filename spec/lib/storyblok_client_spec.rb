@@ -855,6 +855,18 @@ describe Storyblok::Client do
           end
         end
       end
+
+      describe "#build_nested_query" do
+        let(:query) { { by_uuids: ["uuid-1", "uuid-2"] } }
+        let(:request) { double("Request", url: "/cdn/stories", query: query) }
+
+        it "joins array query arguments with commas" do
+          allow(subject).to receive(:request_query) { query }
+          expect(subject).to receive(:run_request).with(anything, "by_uuids=uuid-1,uuid-2") { "{}" }
+
+          subject.cached_get(request)
+        end
+      end
     end
   end
 end
