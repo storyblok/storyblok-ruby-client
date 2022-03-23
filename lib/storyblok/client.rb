@@ -296,9 +296,7 @@ module Storyblok
       def build_nested_query(value, prefix = nil)
         case value
         when Array
-          value.map { |v|
-            build_nested_query(v, "#{prefix}[]")
-          }.join("&")
+          "#{prefix}=#{value.join(',')}"
         when Hash
           value.map { |k, v|
             build_nested_query(v,
