@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api-us.storyblok.com/v2/cdn/stories?cv=0&token=<SPACE_PREVIEW_TOKEN>&version=draft
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.6.0 x86_64) ruby/2.7.2p137
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api-us.storyblok.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.20.0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Total:
+      - '1'
+      Per-Page:
+      - ''
+      X-Request-Id:
+      - 0ae9de16-7106-44ce-a9aa-40087a1316b7
+      X-Runtime:
+      - '1.528326'
+      Date:
+      - Tue, 02 Aug 2022 19:20:40 GMT
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"c705cfb9b94ff88e14bf0649eb65db6c"
+      Vary:
+      - Accept-Encoding,Origin
+      - Origin
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Cache:
+      - RefreshHit from cloudfront
+      Via:
+      - 1.1 d1f8b34c042c93e727a98fcf27ef69d8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU3-C2
+      X-Amz-Cf-Id:
+      - uMrTH0t3pzOx-gZ6ia5XhypI1fL-8v4jxsKNHXcwiud3tuuHeHkbqQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"stories":[{"name":"Home","created_at":"2022-08-02T00:42:03.664Z","published_at":null,"id":172,"uuid":"0d4133a2-ed68-4297-9815-7086d307b3ad","content":{"_uid":"cf48cc52-8cbf-4579-a7b0-1f9307a18256","body":[{"_uid":"2606263c-2ddc-4b3e-a800-0029f2431e42","headline":"Hello
+        world!","component":"teaser","_editable":"\u003c!--#storyblok#{\"name\": \"teaser\",
+        \"space\": \"1000126\", \"uid\": \"2606263c-2ddc-4b3e-a800-0029f2431e42\",
+        \"id\": \"172\"}--\u003e"},{"_uid":"52387341-0906-4b6f-bf96-f115e83d627b","columns":[{"_uid":"1b74ffa0-861d-4791-b00f-de7c27ac0c7a","name":"Feature
+        1","component":"feature","_editable":"\u003c!--#storyblok#{\"name\": \"feature\",
+        \"space\": \"1000126\", \"uid\": \"1b74ffa0-861d-4791-b00f-de7c27ac0c7a\",
+        \"id\": \"172\"}--\u003e"},{"_uid":"1edf8bfd-15d9-48bd-9966-56667c1f1670","name":"Feature
+        2","component":"feature","_editable":"\u003c!--#storyblok#{\"name\": \"feature\",
+        \"space\": \"1000126\", \"uid\": \"1edf8bfd-15d9-48bd-9966-56667c1f1670\",
+        \"id\": \"172\"}--\u003e"},{"_uid":"f1fb492d-8002-4c6a-9114-7065c1ad4951","name":"Feature
+        3","component":"feature","_editable":"\u003c!--#storyblok#{\"name\": \"feature\",
+        \"space\": \"1000126\", \"uid\": \"f1fb492d-8002-4c6a-9114-7065c1ad4951\",
+        \"id\": \"172\"}--\u003e"}],"component":"grid","_editable":"\u003c!--#storyblok#{\"name\":
+        \"grid\", \"space\": \"1000126\", \"uid\": \"52387341-0906-4b6f-bf96-f115e83d627b\",
+        \"id\": \"172\"}--\u003e"}],"component":"page","_editable":"\u003c!--#storyblok#{\"name\":
+        \"page\", \"space\": \"1000126\", \"uid\": \"cf48cc52-8cbf-4579-a7b0-1f9307a18256\",
+        \"id\": \"172\"}--\u003e"},"slug":"home","full_slug":"home","sort_by_date":null,"position":0,"tag_list":[],"is_startpage":false,"parent_id":0,"meta_data":null,"group_id":"d749fa82-684d-4ac7-b4e8-fc1da23a0cca","first_published_at":null,"release_id":null,"lang":"default","path":null,"alternates":[],"default_full_slug":null,"translated_slugs":null}],"cv":1659400923,"rels":[],"links":[]}'
+  recorded_at: Tue, 02 Aug 2022 19:20:40 GMT
+recorded_with: VCR 6.0.0

@@ -41,6 +41,14 @@ Storyblok::Client.new(version: 'draft')
 Storyblok::Client.new(version: 'published')
 ```
 
+#### Using the APIs on other regions
+
+You should use the space access token AND `api_region: 'us'` whenever your space was created under `US` Server Location.
+
+```ruby
+client = Storyblok::Client.new(token: 'YOUR_TOKEN', api_region: 'us')
+```
+
 #### Load a story
 
 ```ruby

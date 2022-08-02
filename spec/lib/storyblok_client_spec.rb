@@ -226,6 +226,16 @@ describe Storyblok::Client do
               )
             end
           end
+
+          context "when querying stories" do
+            context "when using region parameter" do
+              subject { described_class.new(token: token, api_region: "us") }
+
+              it "returns a list of stories", :vcr do
+                expect(subject.stories["data"]["stories"].size).to be > 0
+              end
+            end
+          end
         end
       end
 
