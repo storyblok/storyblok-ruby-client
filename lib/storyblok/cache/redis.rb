@@ -47,7 +47,6 @@ module Storyblok
           @redis.set(key, value)
         end
       end
-
     end
   end
 end

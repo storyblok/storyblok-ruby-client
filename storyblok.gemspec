@@ -5,12 +5,13 @@ Gem::Specification.new do |gem|
   gem.version       = Storyblok::VERSION
   gem.summary       = 'storyblok'
   gem.description   = 'Ruby client for the https://www.storyblok.com management and content delivery API'
-  gem.license       = 'MIT'
   gem.authors       = ['Storyblok (Alexander Feiglstorfer)']
   gem.email         = 'it@storyblok.com'
   gem.homepage      = 'https://github.com/storyblok/storyblok-ruby'
 
-  gem.files         = Dir['{**/}{.*,*}'].select { |path| File.file?(path) && !path.start_with?('pkg') && !path.end_with?('.gem') && !path.include?('spec') }
+  gem.files         = Dir['{**/}{.*,*}'].select { |path|
+    File.file?(path) && !path.start_with?('pkg') && !path.end_with?('.gem') && !path.include?('spec')
+  }
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^spec/})
   gem.require_paths = ['lib']

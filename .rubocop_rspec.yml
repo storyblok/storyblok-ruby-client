@@ -1,0 +1,51 @@
+# Original file https://gist.githubusercontent.com/palkan/623c0816b05ed246bfe0cb406050990a/raw/5cfba4b3dd2ddb2036a6769771cfabc979ce1c22/.rubocop_rspec.yml
+require:
+  - rubocop-rspec
+
+RSpec/Focus:
+  Enabled: true
+
+RSpec/EmptyExampleGroup:
+  Enabled: true
+
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: true
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: true
+
+RSpec/EmptyLineAfterHook:
+  Enabled: true
+
+RSpec/EmptyLineAfterSubject:
+  Enabled: true
+
+RSpec/HookArgument:
+  Enabled: true
+
+RSpec/HooksBeforeExamples:
+  Enabled: true
+
+RSpec/ImplicitExpect:
+  Enabled: true
+
+RSpec/IteratedExpectation:
+  Enabled: true
+
+RSpec/LetBeforeExamples:
+  Enabled: true
+
+RSpec/MissingExampleGroupArgument:
+  Enabled: true
+
+RSpec/ReceiveCounts:
+  Enabled: true
+
+RSpec/Capybara/CurrentPathExpectation:
+  Enabled: true
+
+RSpec/FactoryBot/AttributeDefinedStatically:
+  Enabled: true
+
+RSpec/FactoryBot/CreateList:
+  Enabled: true
