@@ -277,7 +277,7 @@ module Storyblok
           "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
         end
       end
-      
+
       def default_configuration
         DEFAULT_CONFIGURATION.dup
       end
