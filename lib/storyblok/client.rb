@@ -270,11 +270,6 @@ module Storyblok
 
       # Returns the base url for all of the client's requests
       def base_url
-        "http#{configuration[:secure] ? 's' : ''}://#{configuration[:api_url]}/v#{configuration[:api_version]}"
-      end
-
-      # Returns the base url for all of the client's requests
-      def base_url
         if !configuration[:api_url]
           region = configuration[:api_region] ? "-#{configuration[:api_region]}" : ""
           "http#{configuration[:secure] ? 's' : ''}://api#{region}.storyblok.com/v#{configuration[:api_version]}"
@@ -297,9 +292,7 @@ module Storyblok
       end
 
       def validate_configuration!
-        fail ArgumentError,
-             'You will need to initialize a client with an :token or :oauth_token' if !configuration[:token] and !configuration[:oauth_token]
-        fail ArgumentError, 'The client configuration needs to contain an :api_url' if configuration[:api_url].empty?
+        fail ArgumentError, 'You will need to initialize a client with an :token or :oauth_token' if !configuration[:token] and !configuration[:oauth_token]
         fail ArgumentError, 'The :api_version must be a positive number' unless configuration[:api_version].to_i >= 0
       end
 
