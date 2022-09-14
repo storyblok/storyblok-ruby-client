@@ -134,11 +134,11 @@ module Storyblok
     end
 
     def post(path, payload, additional_headers = {})
-      run_management_request(:post, path, payload, additional_headers)
+      run_management_request(:post, path, payload.to_json, additional_headers.merge({content_type: :json}))
     end
 
     def put(path, payload, additional_headers = {})
-      run_management_request(:put, path, payload, additional_headers)
+      run_management_request(:put, path, payload.to_json, additional_headers.merge({content_type: :json}))
     end
 
     def delete(path, additional_headers = {})
