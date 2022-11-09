@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "redis"
+gem "redis", "~> 4.4.0"
 gem "storyblok-richtext-renderer"
 
 gem "rubocop", require: false
