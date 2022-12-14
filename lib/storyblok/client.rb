@@ -40,7 +40,7 @@ module Storyblok
       validate_configuration!
 
       if configuration[:oauth_token]
-        @configuration.merge!(api_version: 1)
+        @configuration[:api_version] = 1
         @rest_client = RestClient::Resource.new(base_url, :headers => {
                                                   :authorization => configuration[:oauth_token]
                                                 })
