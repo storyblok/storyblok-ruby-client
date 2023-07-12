@@ -41,9 +41,14 @@ module Storyblok
 
       if configuration[:oauth_token]
         @configuration[:api_version] = 1
-        @rest_client = RestClient::Resource.new(base_url, :headers => {
-                                                  :authorization => configuration[:oauth_token]
-                                                })
+        @rest_client = RestClient::Resource.new(
+          base_url,
+          headers: {
+            authorization: configuration[:oauth_token],
+            'SB-Agent-Version': Storyblok::VERSION,
+            'SB-Agent': 'SB-RB'
+          }
+        )
       end
 
       @renderer = Richtext::HtmlRenderer.new
@@ -233,7 +238,15 @@ module Storyblok
         retries_left = 3
 
         begin
-          res = RestClient.get "#{endpoint}?#{query_string}"
+          # rubocop:disable Lint/UselessAssignment
+          res = RestClient.get(
+            "#{endpoint}?#{query_string}",
+            headers={
+              'SB-Agent-Version': Storyblok::VERSION,
+              'SB-Agent': 'SB-RB'
+            }
+          )
+          # rubocop:enable Lint/UselessAssignment
         rescue RestClient::TooManyRequests
           if retries_left != 0
             retries_left -= 1
