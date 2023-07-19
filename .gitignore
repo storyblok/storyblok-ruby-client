@@ -1,3 +1,6 @@
+# Ignore bundler config.
+/.bundle
+
 pkg
 doc/
 .yardoc/
