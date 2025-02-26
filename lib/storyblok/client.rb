@@ -243,7 +243,8 @@ module Storyblok
             "#{endpoint}?#{query_string}",
             headers={
               'SB-Agent-Version': Storyblok::VERSION,
-              'SB-Agent': 'SB-RB'
+              'SB-Agent': 'SB-RB',
+              'X-GraphQL-Request': 'true'
             }
           )
           # rubocop:enable Lint/UselessAssignment
