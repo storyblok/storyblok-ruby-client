@@ -35,7 +35,7 @@ module Storyblok
     # @option given_configuration [String] :api_region
     # @option given_configuration [false, ::Logger] :logger
     # @option given_configuration [String] :token Required if oauth_token is not set
-    # @option given_configuration [Hash] :request_type
+    # @option given_configuration [String] :request_type
     def initialize(given_configuration = {})
       @configuration = default_configuration.merge(given_configuration)
       @cache_version = '0'
