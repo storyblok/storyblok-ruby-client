@@ -19,7 +19,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-          bundler-cache: true
+          bundler-cache: false  # Disable auto-cache for manual Bundler handling
+
+      - name: Install Correct Bundler Version
+        run: |
+          gem install bundler -v 1.17.3
+          bundle _1.17.3_ install
 
       - name: Install Rake
         run: gem install rake
@@ -66,9 +71,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: false
+          bundler-cache: false  # Disable auto-cache for manual Bundler handling
 
-      - name: Install correct Bundler version
+      - name: Install Correct Bundler Version
         run: |
           RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION')
           if [[ "$RUBY_VERSION" < "2.6" ]]; then
