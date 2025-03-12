@@ -19,7 +19,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-          bundler-cache: false  # Disable bundler cache to avoid conflicts
+          bundler-cache: false
 
       - name: Install Correct Bundler Version
         run: |
@@ -29,7 +29,7 @@ jobs:
       - name: Install Rake
         run: gem install rake
 
-      - name: Run RuboCop
+      - name: RuboCop
         run: bundle exec rubocop
 
   test:
@@ -71,7 +71,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: false  # Disable bundler cache to avoid conflicts
+          bundler-cache: false
 
       - name: Install Correct Bundler Version
         run: |
@@ -84,7 +84,7 @@ jobs:
       - name: Reporter setup
         run: ./cc-test-reporter -d before-build
 
-      - name: Run RSpec
+      - name: RSpec
         run: bundle exec rspec
 
       - name: Send coverage report
