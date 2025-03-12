@@ -79,3 +79,21 @@ jobs:
           gem uninstall -aIx bundler  # Remove all existing Bundler versions
           RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION')
           if [[ "$RUBY_VERSION" =~ ^2\.[3-5]$ ]]; then
+            gem install bundler -v 1.17.3
+            bundle _1.17.3_ install
+          else
+            gem install bundler
+            bundle install
+          fi
+
+      - name: Install Rake
+        run: gem install rake
+
+      - name: Reporter setup
+        run: ./cc-test-reporter -d before-build
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - name: Send coverage report
+        run: ./cc-test-reporter -d after-build -t simplecov
