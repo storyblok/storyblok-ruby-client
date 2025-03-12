@@ -1,5 +1,5 @@
 # Original file https://gist.githubusercontent.com/palkan/623c0816b05ed246bfe0cb406050990a/raw/5cfba4b3dd2ddb2036a6769771cfabc979ce1c22/.rubocop_rspec.yml
-require:
+plugins:
   - rubocop-rspec
 
 RSpec/Focus:
@@ -39,13 +39,4 @@ RSpec/MissingExampleGroupArgument:
   Enabled: true
 
 RSpec/ReceiveCounts:
-  Enabled: true
-
-RSpec/Capybara/CurrentPathExpectation:
-  Enabled: true
-
-RSpec/FactoryBot/AttributeDefinedStatically:
-  Enabled: true
-
-RSpec/FactoryBot/CreateList:
   Enabled: true

@@ -15,7 +15,7 @@ inherit_from:
   - .rubocop_rspec.yml
   - .rubocop_strict.yml
 
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
 
