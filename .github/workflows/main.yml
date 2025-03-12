@@ -19,10 +19,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-          bundler-cache: false  # Disable auto-cache for manual Bundler handling
+          bundler-cache: false  # Disable auto-cache to prevent conflicts
 
       - name: Install Correct Bundler Version
         run: |
+          gem uninstall -aIx bundler  # Remove all existing Bundler versions
           gem install bundler -v 1.17.3
           bundle _1.17.3_ install
 
@@ -71,10 +72,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: false  # Disable auto-cache for manual Bundler handling
+          bundler-cache: false  # Disable auto-cache
 
       - name: Install Correct Bundler Version
         run: |
+          gem uninstall -aIx bundler  # Remove all existing Bundler versions
           RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION')
           if [[ "$RUBY_VERSION" < "2.6" ]]; then
             gem install bundler -v 1.17.3
