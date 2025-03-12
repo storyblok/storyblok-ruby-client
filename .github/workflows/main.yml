@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Correct Bundler Version
         run: |
-          gem uninstall -aIx bundler  # Remove all existing Bundler versions
+          gem uninstall -aIx bundler  # Remove all Bundler versions
           gem install bundler -v 1.17.3
           bundle _1.17.3_ install
 
@@ -76,7 +76,7 @@ jobs:
 
       - name: Install Correct Bundler Version
         run: |
-          gem uninstall -aIx bundler  # Remove all existing Bundler versions
+          gem uninstall -aIx bundler  # Remove all Bundler versions
           RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION')
           if [[ "$RUBY_VERSION" =~ ^2\.[3-5]$ ]]; then
             gem install bundler -v 1.17.3
