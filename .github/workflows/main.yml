@@ -61,5 +61,5 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
 
-      - name: Send coverage report
+      - name: Send coverage report2
         run: ./cc-test-reporter -d after-build -t simplecov
