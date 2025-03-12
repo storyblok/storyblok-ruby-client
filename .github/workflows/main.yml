@@ -1,4 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+          bundler-cache: false  # Disable bundler cache to avoid conflicts
+
+      - name: Install Correct Bundler Version
+        run: |
+          gem install bundler -v 1.17.3  # Install Bundler 1.17.3 explicitly
+          bundle _1.17.3_ install          # Use Bundler 1.17.3 to install dependencies
+
+      - name: Install Rake
+        run: gem install rake
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
   test:
     name: Test ${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}-latest
@@ -6,7 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ 'ubuntu' ]
-        ruby: [2.3, 2.4, 2.5, 2.6, 2.7, '3.0', 3.1]
+        ruby: [2.4, 2.5, 2.6, 2.7, '3.0', 3.1]
 
     env:
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
@@ -38,19 +71,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: false
+          bundler-cache: false  # Disable bundler cache to avoid conflicts
 
-      - name: Install Bundler 1.17.3
-        if: matrix.ruby == '2.3'  # Only run this for Ruby 2.3
+      - name: Install Correct Bundler Version
         run: |
-          gem install bundler -v 1.17.3  # Install Bundler 1.17.3 explicitly for Ruby 2.3
+          gem install bundler -v 1.17.3  # Install Bundler 1.17.3 explicitly
           bundle _1.17.3_ install          # Use Bundler 1.17.3 to install dependencies
-
-      - name: Install Bundler (for other versions)
-        if: matrix.ruby != '2.3'  # Skip for Ruby 2.3
-        run: |
-          gem install bundler -v 2.6.5  # Use a newer version of Bundler for other Rubies
-          bundle install  # Run bundle install normally
 
       - name: Install Rake
         run: gem install rake
@@ -61,5 +87,5 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
 
-      - name: Send coverage report2
+      - name: Send coverage report
         run: ./cc-test-reporter -d after-build -t simplecov
