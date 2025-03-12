@@ -19,8 +19,7 @@ module Storyblok
       component_resolver: ->(component, data) { '' },
       # :nocov:
       cache_version: Time.now.to_i,
-      cache: nil,
-      request_type: nil
+      cache: nil
     }
 
     attr_reader :configuration, :logger
@@ -34,8 +33,7 @@ module Storyblok
     # @option given_configuration [Number] :api_version
     # @option given_configuration [String] :api_region
     # @option given_configuration [false, ::Logger] :logger
-    # @option given_configuration [String] :token Required if oauth_token is not set
-    # @option given_configuration [String] :request_type
+    # @option given_configuration [::Logger::DEBUG, ::Logger::INFO, ::Logger::WARN, ::Logger::ERROR] :log_level
     def initialize(given_configuration = {})
       @configuration = default_configuration.merge(given_configuration)
       @cache_version = '0'
@@ -240,17 +238,13 @@ module Storyblok
         retries_left = 3
 
         begin
-          headers = {
-            'SB-Agent-Version': Storyblok::VERSION,
-            'SB-Agent': 'SB-RB'
-          }
-
-          headers['X-Request-Type'] = @configuration[:request_type] unless @configuration[:request_type].to_s.empty?
-
           # rubocop:disable Lint/UselessAssignment
           res = RestClient.get(
             "#{endpoint}?#{query_string}",
-            headers = headers
+            headers={
+              'SB-Agent-Version': Storyblok::VERSION,
+              'SB-Agent': 'SB-RB'
+            }
           )
           # rubocop:enable Lint/UselessAssignment
         rescue RestClient::TooManyRequests
