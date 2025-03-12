@@ -6,7 +6,7 @@ on:
       - master
 
   pull_request:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -19,7 +19,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
 
       - uses: actions/cache@v3
         with:

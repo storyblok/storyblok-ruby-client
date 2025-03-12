@@ -1,0 +1,17 @@
+# Use a specific Ruby version
+FROM ruby:2.5
+
+# Install Bundler version 1.5.0
+RUN gem install bundler -v '1.5.0'
+
+# Set working directory
+WORKDIR /app
+
+# Copy the app files
+COPY . /app
+
+# Install dependencies using Bundler 1.5.0
+RUN bundle _1.5.0_ install
+
+# Default command (this can be overridden)
+CMD ["irb"]
