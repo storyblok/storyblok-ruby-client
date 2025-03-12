@@ -5,9 +5,10 @@ require 'storyblok'
 logger = Logger.new(STDOUT)
 
 client = Storyblok::Client.new(
-  token: 'A5uTnm0GXLBLhwaGrhHdQwtt',
   oauth_token: 'OAUTH_TOKEN',
-  logger: logger
+  logger: logger,
+  api_url: 'mapi.storyblok.com',
+  api_version: 1
 )
 
 spaces = client.get('spaces')['data']['spaces']
