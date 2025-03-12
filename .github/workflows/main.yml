@@ -19,13 +19,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-          bundler-cache: false  # Disable auto-cache to prevent conflicts
+          bundler-cache: false  # Disable bundler cache to avoid conflicts
 
       - name: Install Correct Bundler Version
         run: |
-          gem uninstall -aIx bundler  # Remove all Bundler versions
-          gem install bundler -v 1.17.3
-          bundle _1.17.3_ install
+          gem install bundler -v 1.17.3  # Install Bundler 1.17.3 explicitly
+          bundle _1.17.3_ install          # Use Bundler 1.17.3 to install dependencies
 
       - name: Install Rake
         run: gem install rake
@@ -72,19 +71,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: false  # Disable auto-cache
+          bundler-cache: false  # Disable bundler cache to avoid conflicts
 
       - name: Install Correct Bundler Version
         run: |
-          gem uninstall -aIx bundler  # Remove all Bundler versions
-          RUBY_VERSION=$(ruby -e 'puts RUBY_VERSION')
-          if [[ "$RUBY_VERSION" =~ ^2\.[3-5]$ ]]; then
-            gem install bundler -v 1.17.3
-            bundle _1.17.3_ install
-          else
-            gem install bundler
-            bundle install
-          fi
+          gem install bundler -v 1.17.3  # Install Bundler 1.17.3 explicitly
+          bundle _1.17.3_ install          # Use Bundler 1.17.3 to install dependencies
 
       - name: Install Rake
         run: gem install rake
