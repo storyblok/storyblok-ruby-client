@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **This repository is archived and no longer maintained.**
+
 <div align="center">
 	<a  href="https://www.storyblok.com?utm_source=github.com&utm_medium=readme&utm_campaign=storyblok-ruby"  align="center">
 		<img  src="https://a.storyblok.com/f/88751/1776x360/95e296dafa/sb-ruby.png"  alt="Storyblok Logo">
